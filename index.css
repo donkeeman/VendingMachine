@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+/* reset css */
+
+body, header, main, section, table, table tr, table tr td,
+div, ul, ul li, h1, h2{
+    margin: 0;
+    padding: 0;
+}
+
+.body{
+    font-size: inherit;
+}
+
+button, button:hover, button:active{
+    border: 0;
+    background-color: inherit;
+}
+
+button, input{
+    font: inherit;
+}
+
+ul li{
+    list-style: none;
+}
+
+/* design */
+
+body{
+    background-color: lightgray;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.header{
+    height: 180px;
+    background-image: url("./public/Logo_img.png");
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: top center;
+}
+
+.title{
+    display: none;
+}
+
+.main{
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.mainWrapper{
+    display: grid;
+    grid-gap: 20px;
+    grid-auto-columns: auto;
+    grid-template:
+        "machine money"
+        "machine drink"
+        "machine drink";
+}
+
+.sections{
+    background-color: white;
+    padding: 20px;
+}
+
+.sections.machine{
+    grid-area: machine;
+}
+
+.sections.myMoney{
+    grid-area: money;
+}
+
+.sections.myDrinks{
+    grid-area: drink;
+}
+
+.drinksTable{
+    width: 100%;
+}
+
+.drinksTable tr td{
+    border-radius: 30px;
+    border: 2px solid lightgray;
+    box-shadow: 0 0 10px lightgray;
+    text-align: center;
+    padding: 10px;
+    width: fit-content;
+}
+.drinksTable tr td>*{
+    display: block;
+    margin: 0 auto;
+}
+
+.colaImage{
+    width: 50%;
+    margin: 0;
+}
+
+.colaPrice{
+    border-radius: 10px;
+    color: white;
+    background-color: rebeccapurple;
+}
+
+.moneyDiv{
+    padding: 5px 10px;
+    background-color: lightgray;
+    border-radius: 8px;
+    overflow: hidden;
+    width: auto;
+}
+
+.moneyDiv span:nth-child(1){
+    display: block;
+    float: left;
+}
+
+.moneyDiv span:nth-child(2){
+    display: block;
+    float: right;
+}
+
+.money{
+    margin: 0 5px;
+}
+
+.buttons{
+    border-radius: 8px;
+    border: 2px solid lightgray;
+    box-shadow: 0 0 10px lightgray;
+}
+
+.buyDrinkList{
+    overflow-y: scroll;
+}
+
+.temp{
+    display: inline-block;
+    width: 50%;
+}
+.temp>*{
+    display: block;
+}
