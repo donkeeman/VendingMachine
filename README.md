@@ -1,3 +1,3 @@
 # VendingMachine
-VendingMachine Page
+VendingMachine Page  
 https://lhw421.github.io/VendingMachine
