@@ -16,77 +16,69 @@
         <div class="mainWrapper">
             <!-- 왼쪽 섹션 -->
             <section class="sections machine">
-
-                <!-- 음료수 목록 테이블-->
-                <table class="drinksTable">
+                <table class="colaTable">
                     <tr>
                         <td>
-                            <img class="colaImage" src="./public/dummy.png" alt="colaName">
-                            <span class="colaName">colaName</span>
-                            <span class="colaPrice">colaPrice</span>
-                        </td>
-                        <td>
-                            <img class="colaImage" src="./public/dummy.png" alt="colaName">
-                            <span class="colaName">colaName</span>
-                            <span class="colaPrice">colaPrice</span>
-                        </td>
-                        <td>
-                            <img class="colaImage" src="./public/dummy.png" alt="colaName">
-                            <span class="colaName">colaName</span>
-                            <span class="colaPrice">colaPrice</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="colaImage" src="./public/dummy.png" alt="colaName">
-                            <span class="colaName">colaName</span>
-                            <span class="colaPrice">colaPrice</span>
-                        </td>
-                        <td>
-                            <img class="colaImage" src="./public/dummy.png" alt="colaName">
-                            <span class="colaName">colaName</span>
-                            <span class="colaPrice">colaPrice</span>
-                        </td>
-                        <td>
-                            <img class="colaImage" src="./public/dummy.png" alt="colaName">
-                            <span class="colaName">colaName</span>
-                            <span class="colaPrice">colaPrice</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div class="moneyDiv balance">
-                                <span>잔액: </span>
-                                <span><span class="money balance">0</span>원</span>
+                            <div class="cola">
+                                <img class="colaImage" src="./public/dummy.png" alt="colaName">
+                                <span class="colaName">colaName</span>
+                                <span class="colaPrice">colaPrice</span>
                             </div>
                         </td>
                         <td>
-                            <button type="button" class="buttons return" id="returnButton">반환</button>
+                            <div class="cola">
+                                <img class="colaImage" src="./public/dummy.png" alt="colaName">
+                                <span class="colaName">colaName</span>
+                                <span class="colaPrice">colaPrice</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="cola">
+                                <img class="colaImage" src="./public/dummy.png" alt="colaName">
+                                <span class="colaName">colaName</span>
+                                <span class="colaPrice">colaPrice</span>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <input type="number" placeholder="입금액 입력">
+                        <td>
+                            <div class="cola">
+                                <img class="colaImage" src="./public/dummy.png" alt="colaName">
+                                <span class="colaName">colaName</span>
+                                <span class="colaPrice">colaPrice</span>
+                            </div>
                         </td>
                         <td>
-                            <button type="button" class="buttons deposit" id="depositButton">입금</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <ul class="buyDrinkList">
-                                <!-- 여기에 추가하는 것은 자바스크립트로 -->
-                                <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
-                                <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
-                                <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
-                            </ul>
+                            <div class="cola">
+                                <img class="colaImage" src="./public/dummy.png" alt="colaName">
+                                <span class="colaName">colaName</span>
+                                <span class="colaPrice">colaPrice</span>
+                            </div>
                         </td>
                         <td>
-                            <button type="button" class="buttons buy" id="buyButton">획득</button>
+                            <div class="cola">
+                                <img class="colaImage" src="./public/dummy.png" alt="colaName">
+                                <span class="colaName">colaName</span>
+                                <span class="colaPrice">colaPrice</span>
+                            </div>
                         </td>
                     </tr>
                 </table>
-
+                <div class="moneyDiv balance">
+                    <span>잔액: </span>
+                    <span><span class="money balance">0</span>원</span>
+                </div>
+                <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
+                <input type="number" placeholder="입금액 입력" class="input deposit">
+                <button type="button" class="buttons deposit" id="depositButton">입금</button>
+                <ul class="buyDrinkList">
+                    <!-- 여기에 추가하는 것은 자바스크립트로 -->
+                    <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
+                    <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
+                    <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
+                </ul>
+                <button type="button" class="buttons buy" id="buyButton">획득</button>
+                
             </section>
             
             <!-- 오른쪽 위 섹션 -->
@@ -101,7 +93,13 @@
             <!-- 오른쪽 아래 섹션 -->
             <section class="sections myDrinks">
                 <!-- 내가 가진 음료수 목록 -->
-                <h2>획득한 음료</h2>
+                <h2 class="myDrinksHeader">획득한 음료</h2>
+                <ul class="ownDrinkList">
+                    <!-- 여기에 추가하는 것은 자바스크립트로 -->
+                    <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
+                    <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
+                    <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
+                </ul>
             </section>
         </div>
 
