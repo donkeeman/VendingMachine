@@ -22,8 +22,8 @@ button, input{
     font: inherit;
 }
 
-ul li{
-    list-style: none;
+ul{
+    list-style-type: none;
 }
 
 /* design */
@@ -54,7 +54,7 @@ body{
 .mainWrapper{
     text-align: center;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 28px;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
     /* grid-template:
@@ -64,69 +64,92 @@ body{
 }
 
 .sections{
+    /* box-sizing: border-box; */
+    width: 330px;
     background-color: white;
-    padding: 20px;
 }
 
 .sections.machine{
-    grid-row: 1 / 3;
-    display: grid;
-    grid-gap: 10px;
-    grid-template:
-            "colaTable colaTable colaTable"
-            "colaTable colaTable colaTable"
-            "balance balance returnButton"
-            "depositInput depositInput depositButton"
-            "drinkList drinkList buyButton";
+    padding: 19px 27px;
+    float: left;
 }
 
 .sections.myMoney{
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
+    padding: 9px 27px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    height: fit-content;
+}
+.sections.myDrinks{
+
+    padding: 19px 27px;
 }
 
-.sections.myDrinks{
-    grid-row: 2 / 3;
-    grid-column: 2 / 2;
+.colaList{
+    overflow: hidden;
 }
-.colaTable{
-    grid-area: colaTable;
-    grid-row: 1 / span 2;
-    grid-column: 1 / span 3;
-    justify-content: center;
-    align-content: center;
+
+.colaList>li{
+    float: left;
+    margin: 6px;
 }
 
 .cola{
-    padding: 5px;
+    width: 70px;
+    padding: 11px 11px 9px 13px;
     border-radius: 10px;
     border: 2px solid lightgray;
     box-shadow: 0 0 10px lightgray;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .colaImage{
-    width: 94px;
+    width: 36px;
+    height: 65px;
+}
+
+.colaName{
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 13px;
 }
 
 .colaPrice{
-    width: fit-content;
-    padding: 0 10px;
-    border-radius: 10px;
+    /* width: fit-content; */
+    display: block;
+    margin-top: 7px;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
     color: white;
-    background-color: rebeccapurple;
+    background-color: #6327FE;
 }
 
 .moneyDiv{
+    height: fit-content;
     padding: 5px 10px;
     background-color: lightgray;
     border-radius: 8px;
     overflow: hidden;
-    width: auto;
-    grid-area: balance;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.buttonAndElse{
+    width: 100%;
+}
+
+.buttonAndElse :nth-child(1){
+    width: 200px;
+    float: left;
+}
+
+.buttonAndElse:nth-child(2){
+    float: right;
 }
 
 .moneyDiv span:nth-child(1){
@@ -137,6 +160,12 @@ body{
 .moneyDiv span:nth-child(2){
     display: block;
     float: right;
+}
+
+.moneyDiv.having :nth-child(2){
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .money{
@@ -159,21 +188,25 @@ body{
 
 .buttons.buy{
     grid-area: buyButton;
-    background-color: rebeccapurple;
+    background-color: #6327FE;
     color: white;
 }
 
 .input.deposit{
     grid-area: depositInput;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
 }
 
-ul{
+.buyDrinkList, .ownDrinkList{
     background-color: lightgray;
     border-radius: 8px;
     border: 2px solid gray;
 }
 
-ul>li{
+.buyDrinkList>li,
+.ownDrinkList>li{
     width: fit-content;
     margin: 2px auto;
     padding: 5px;
@@ -194,5 +227,7 @@ ul>li{
 }
 
 .ownDrinkList{
+    width: 306px;
     height: 500px;
+    overflow: scroll;
 }
