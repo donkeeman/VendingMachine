@@ -53,15 +53,11 @@ body{
 
 .mainWrapper{
     text-align: center;
-    display: grid;
-    grid-gap: 28px;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto auto;
-    /* grid-template:
-        "machine money"
-        "machine drink"
-        "machine drink"; */
+    display: flex;
+    justify-content: center;
+    gap: 0 28px;
 }
+
 
 .sections{
     /* box-sizing: border-box; */
@@ -72,6 +68,12 @@ body{
 .sections.machine{
     padding: 19px 27px;
     float: left;
+}
+
+.rightDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .sections.myMoney{
@@ -152,24 +154,25 @@ body{
     float: right;
 }
 
-.moneyDiv span:nth-child(1){
+.money{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    background-color: #EAE8FE;
+}
+
+.money.balance::before{
+    content: "잔액: ";
     display: block;
     float: left;
 }
 
-.moneyDiv span:nth-child(2){
+.money.have::before{
+    content: "잔액: ";
     display: block;
-    float: right;
-}
-
-.moneyDiv.having :nth-child(2){
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-}
-
-.money{
-    margin: 0 5px;
+    float: left;
 }
 
 .buttons{
@@ -229,5 +232,5 @@ body{
 .ownDrinkList{
     width: 306px;
     height: 500px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
