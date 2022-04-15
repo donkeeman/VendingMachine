@@ -47,10 +47,10 @@
                     <span class="colaPrice">1000원</span>
                 </button>
 
-                <p class="money balance">0</p>
+                <p class="money balance" id="balance">3000</p>
                 <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
 
-                <input type="number" placeholder="입금액 입력" class="input deposit" min="0">
+                <input type="number" placeholder="입금액 입력" class="input deposit" id="deposit" min="0">
                 <button type="button" class="buttons deposit" id="depositButton">입금</button>
 
 
@@ -59,22 +59,7 @@
                     <li>
                         <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="buyColaImage">
                         <span class="colaName">Original_Cola</span>
-                        <div class="buyColaCount">1</div>
-                    </li>
-                    <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Green_Cola.png" alt="Green_Cola">
-                        <span class="colaName">Green_Cola</span>
-                        <div class="buyColaCount">2</div>
-                    </li>
-                    <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Orange_Cola.png" alt="Orange_Cola">
-                        <span class="colaName">Orange_Cola</span>
-                        <div class="buyColaCount">1</div>
-                    </li>
-                    <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Violet_Cola.png" alt="Violet_Cola">
-                        <span class="colaName">Violet_Cola</span>
-                        <div class="buyColaCount">5</div>
+                        <div class="buyColaCount">0</div>
                     </li>
                 </ul>
                 <button type="button" class="buttons buy" id="buyButton">획득</button>
@@ -84,7 +69,7 @@
                 <!-- 오른쪽 위 섹션 -->
                 <section class="sections myMoney">
                     <!-- 소지금 -->
-                    <p class="money have">
+                    <p class="money have" id="have">
                         0
                     </p>
                 </section>

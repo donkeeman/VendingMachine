@@ -101,6 +101,11 @@ body{
     text-align: center;
 }
 
+.cola:hover{
+    box-sizing: border-box;
+    box-shadow: 0 0 0 3px #6327FE;
+}
+
 .colaImage{
     width: 36px;
     height: 65px;
