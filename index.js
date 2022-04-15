@@ -1,8 +1,19 @@
-// 추후에는 json 파일로 받아 온다.
+let buyDrinkList = document.getElementById("buyDrinkList");
+let ownDrinkList = document.getElementById("ownDrinkList");
 
-const drinkNameList = ["Original_Cola", "Violet_Cola", ""]
+let buyButton = document.getElementById("buyButton");
 
-let drinks = document.getElementById("drinksTable").childNodes;
+buyButton.onclick = buyDrink;
 
-for(let i = 0; i<drinks.length; i++){
+function buyDrink(){
+    for(let i = 0; i<buyDrinkList.childElementCount; i++){
+        let drink = buyDrinkList.children[i].cloneNode(true);
+        ownDrinkList.appendChild(drink);
+    }
 }
+
+// function total(){
+//     for(let i = 0; i<ownDrinkList.childElementCount; i++){
+//         ownDrinkList.children[i].
+//     }
+// }
