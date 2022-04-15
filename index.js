@@ -5,14 +5,18 @@ let colaList = document.getElementsByClassName("cola");
 let balance = document.getElementById("balance");
 let deposit = document.getElementById("deposit");
 let have = document.getElementById("have");
+let total = document.getElementById("total");
 
 const returnButton = document.getElementById("returnButton");
 const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
 
+
 // origin, violet, yellow, cool, green, orange
 let colaCount = [0, 0, 0, 0, 0, 0];
+let buyColaCount = [0, 0, 0, 0, 0, 0];
 
+let totalCount = 0;
 for(let i = 0; i<colaList.length; i++){
     colaList[i].onclick = function(){
         colaCount[i]++;
@@ -20,6 +24,7 @@ for(let i = 0; i<colaList.length; i++){
         // 콜라 개수로 리스트의 buyColaCount 변수를 바꿔주면 됨
     }
 }
+
 
 returnButton.onclick = returnMoney;
 depositButton.onclick = depositMoney;
@@ -30,10 +35,16 @@ function buyDrink(){
         let drink = buyDrinkList.children[i].cloneNode(true);
         ownDrinkList.appendChild(drink);
     }
+    buyColaCount = colaCount;
+    
+    for(let i = 0; i<buyColaCount.length; i++){
+        totalCount += buyColaCount[i];
+    }
+    total.innerHTML = 1000*totalCount;
 }
 
 function returnMoney(){
-    have.innerHTML = balance.innerHTML;
+    have.innerHTML = parseInt(have.innerHTML)+parseInt(balance.innerHTML);
     balance.innerHTML = "0";
 }
 
@@ -44,9 +55,3 @@ function depositMoney(){
         deposit.value = "";
     }
 }
-
-// function total(){
-//     for(let i = 0; i<ownDrinkList.childElementCount; i++){
-//         ownDrinkList.children[i].
-//     }
-// }
