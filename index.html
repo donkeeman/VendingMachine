@@ -16,61 +16,46 @@
         <div class="mainWrapper">
             <!-- 왼쪽 섹션 -->
             <section class="sections machine">
-                <ul class="colaList">
-                    <li>
-                        <div class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Original_Cola.png" alt="Original_Cola">
-                            <span class="colaName">Original_Cola</span>
-                            <span class="colaPrice">1000원</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Violet_Cola.png" alt="Violet_Cola">
-                            <span class="colaName">Violet_Cola</span>
-                            <span class="colaPrice">1000원</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Yellow_Cola.png" alt="Yellow_Cola">
-                            <span class="colaName">Yellow_Cola</span>
-                            <span class="colaPrice">1000원</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Cool_Cola.png" alt="Cool_Cola">
-                            <span class="colaName">Cool_Cola</span>
-                            <span class="colaPrice">1000원</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Green_Cola.png" alt="Green_Cola">
-                            <span class="colaName">Green_Cola</span>
-                            <span class="colaPrice">1000원</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Orange_Cola.png" alt="Orange_Cola">
-                            <span class="colaName">Orange_Cola</span>
-                            <span class="colaPrice">1000원</span>
-                        </div>
-                    </li>
-                </ul>
-                <div class="buttonAndElse">
-                    <p class="money balance">
-                        0
-                    </p>
+                    <button class="cola first">
+                        <img class="colaImage" src="./public/mediaquery/Original_Cola.png" alt="Original_Cola">
+                        <span class="colaName">Original_Cola</span>
+                        <span class="colaPrice">1000원</span>
+                    </button>
+
+                    <button class="cola second">
+                        <img class="colaImage" src="./public/mediaquery/Violet_Cola.png" alt="Violet_Cola">
+                        <span class="colaName">Violet_Cola</span>
+                        <span class="colaPrice">1000원</span>
+                    </button>
+                    <button class="cola third">
+                        <img class="colaImage" src="./public/mediaquery/Yellow_Cola.png" alt="Yellow_Cola">
+                        <span class="colaName">Yellow_Cola</span>
+                        <span class="colaPrice">1000원</span>
+                    </button>
+                    <button class="cola fourth">
+                        <img class="colaImage" src="./public/mediaquery/Cool_Cola.png" alt="Cool_Cola">
+                        <span class="colaName">Cool_Cola</span>
+                        <span class="colaPrice">1000원</span>
+                    </button>
+                    <button class="cola fifth">
+                        <img class="colaImage" src="./public/mediaquery/Green_Cola.png" alt="Green_Cola">
+                        <span class="colaName">Green_Cola</span>
+                        <span class="colaPrice">1000원</span>
+                    </button>
+                    <button class="cola sixth">
+                        <img class="colaImage" src="./public/mediaquery/Orange_Cola.png" alt="Orange_Cola">
+                        <span class="colaName">Orange_Cola</span>
+                        <span class="colaPrice">1000원</span>
+                    </button>
+
+                    <p class="money balance">0</p>
                     <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
-                </div>
-                <div class="buttonAndElse">
-                    <input type="number" placeholder="입금액 입력" class="input deposit">
+
+
+                    <input type="number" placeholder="입금액 입력" class="input deposit" min="0">
                     <button type="button" class="buttons deposit" id="depositButton">입금</button>
-                </div>
-                <div class="buttonAndElse">
+
+
                     <ul class="buyDrinkList">
                         <!-- 여기에 추가하는 것은 자바스크립트로 -->
                         <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
@@ -78,7 +63,7 @@
                         <li>콜라 이미지 / 콜라 이름 / 콜라 개수</li>
                     </ul>
                     <button type="button" class="buttons buy" id="buyButton">획득</button>
-                </div>
+
 
             </section>
 
