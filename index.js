@@ -13,15 +13,24 @@ const buyButton = document.getElementById("buyButton");
 
 
 // origin, violet, yellow, cool, green, orange
+// 콜라의 재고 (아직은 정확한 수치를 모름)
 let colaCount = [0, 0, 0, 0, 0, 0];
+// 자판기에서 획득한 콜라의 개수
 let buyColaCount = [0, 0, 0, 0, 0, 0];
+// 구매 후 획득한 음료 리스트에 들어가는 콜라의 개수
+let ownColaCount = [0, 0, 0, 0, 0, 0];
 
 let totalCount = 0;
 for(let i = 0; i<colaList.length; i++){
     colaList[i].onclick = function(){
-        colaCount[i]++;
+        // if 콜라 재고가 0개가 아닐 때
+        // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
+        // 재고는 1 감소
+        buyColaCount[i]++;
+        colaCount[i]--;
         this.style.boxShadow = "0 0 0 3px #6327FE";
-        // 콜라 개수로 리스트의 buyColaCount 변수를 바꿔주면 됨
+        // else
+        // 품절 뜨게
     }
 }
 
@@ -35,12 +44,15 @@ function buyDrink(){
     //     let drink = buyDrinkList.children[i].cloneNode(true);
     //     ownDrinkList.appendChild(drink);
     // }
-    // buyColaCount = colaCount;
-    // totalCount = 0;
-    // for(let i = 0; i<buyColaCount.length; i++){
-    //     totalCount += buyColaCount[i];
-    // }
-    // total.innerHTML = 1000*totalCount;
+    totalCount = 0;
+    for(let i = 0; i<buyColaCount.length; i++){
+        totalCount += buyColaCount[i];
+        buyColaCount[i] = 0;
+    }
+    if(1000*totalCount<=parseInt(balance.innerHTML)){
+        balance.innerHTML = parseInt(balance.innerHTML) - 1000*totalCount;
+        total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;
+    }
 }
 
 function returnMoney(){
