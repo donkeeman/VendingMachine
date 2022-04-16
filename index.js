@@ -31,16 +31,16 @@ depositButton.onclick = depositMoney;
 buyButton.onclick = buyDrink;
 
 function buyDrink(){
-    for(let i = 0; i<buyDrinkList.childElementCount; i++){
-        let drink = buyDrinkList.children[i].cloneNode(true);
-        ownDrinkList.appendChild(drink);
-    }
-    buyColaCount = colaCount;
-    
-    for(let i = 0; i<buyColaCount.length; i++){
-        totalCount += buyColaCount[i];
-    }
-    total.innerHTML = 1000*totalCount;
+    // for(let i = 0; i<buyDrinkList.childElementCount; i++){
+    //     let drink = buyDrinkList.children[i].cloneNode(true);
+    //     ownDrinkList.appendChild(drink);
+    // }
+    // buyColaCount = colaCount;
+    // totalCount = 0;
+    // for(let i = 0; i<buyColaCount.length; i++){
+    //     totalCount += buyColaCount[i];
+    // }
+    // total.innerHTML = 1000*totalCount;
 }
 
 function returnMoney(){
