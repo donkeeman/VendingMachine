@@ -52,6 +52,9 @@ function buyDrink(){
     if(1000*totalCount<=parseInt(balance.innerHTML)){
         balance.innerHTML = parseInt(balance.innerHTML) - 1000*totalCount;
         total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;
+        for(let i = 0; i<colaList.length; i++){
+            colaList[i].style.boxShadow = "0px 0px 4px rgba(0, 0, 0, 0.5)";
+        }
     }
 }
 
