@@ -50,7 +50,6 @@ body{
 }
 
 .main{
-    width: 60%;
     margin: 68px auto;
 }
 
@@ -58,9 +57,9 @@ body{
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 28px;
 }
-
 
 .sections{
     box-sizing: border-box;
@@ -81,6 +80,26 @@ body{
     display: flex;
     flex-direction: column;
     gap: 14px;
+}
+
+/* 모바일 화면 미디어 쿼리 */
+@media screen and (max-width: 600px){
+    .header{
+        height: 72px;
+        background-size: 166px;
+        background-color: white;
+    }
+    .main{
+        margin: 0;
+        background-color: white;
+    }
+    .mainWrapper{
+        flex-direction: column;
+        gap: 0;
+    }
+    .rightDiv{
+        gap: 0;
+    }
 }
 
 .sections.myMoney{
