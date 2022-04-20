@@ -80,7 +80,7 @@ function returnMoney(){
 }
 
 function depositMoney(){
-    if(parseInt(have.innerHTML) > parseInt(deposit.value)){
+    if(parseInt(have.innerHTML) >= parseInt(deposit.value)){
         balance.innerHTML = parseInt(balance.innerHTML)+parseInt(deposit.value);
         have.innerHTML = parseInt(have.innerHTML) - parseInt(deposit.value);
         deposit.value = "";
