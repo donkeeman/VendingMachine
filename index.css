@@ -3,7 +3,7 @@
 
 /* reset css */
 
-body, header, main, section, p, div, ul, ul li, h1, h2{
+body, header, section, p, div, ul, ul li, h1, h2{
     margin: 0;
     padding: 0;
 }
@@ -43,7 +43,7 @@ body{
     height: 180px;
     background-image: url("./public/Logo.png");
     background-repeat: no-repeat;
-    background-size: 386px;
+    background-size: 386px 180px;
     background-position: top center;
 }
 
@@ -51,11 +51,8 @@ body{
     color: transparent;
 }
 
-.main{
-    margin: 68px auto;
-}
-
 .mainWrapper{
+    margin: 67px auto;
     display: flex;
     justify-content: center;
     gap: 28px;
@@ -72,7 +69,8 @@ body{
     padding: 19px 27px;
 }
 
-.colaList, .buyWrapper{
+.colaList,
+.buyWrapper{
     display: grid;
     justify-content: center;
     grid-template-columns: 1fr 1fr 1fr;
@@ -106,7 +104,7 @@ body{
     position: relative;
 }
 
-.cola:active{
+.cola:hover, .cola.clicked{
     outline: 3px solid #6327FE;
 }
 
@@ -234,29 +232,37 @@ body{
     grid-column: 1 / span 2;
 }
 
-.buyDrinkList>li,
-.ownDrinkList>li{
+.buyDrinkList>li>button,
+.ownDrinkList>li>button{
+    width: 100%;
     box-sizing: border-box;
     margin: 2px auto;
     padding: 5px;
     border-radius: 8px;
     border: 1px solid #BDBDBD;
     background-color: white;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    overflow: hidden;
+    text-align: left;
+}
+
+.ownDrinkList>li>button{
+    pointer-events: none;
 }
 
 .buyColaImage{
+    float: left;
     width: 18px;
     height: 33px;
+    vertical-align: bottom;
 }
 
 .buyColaName{
+    margin-left: 8px;
     font-weight: 500;
     font-size: 10px;
     line-height: 13px;
     color: #333333;
+    vertical-align: bottom;
 }
 
 .buyColaCount{
@@ -268,7 +274,6 @@ body{
     font-size: 14px;
     line-height: 20px;
     padding: 4px 11px 6px 11px;
-    align-self: flex-end;
 }
 
 .buttons.buy{
@@ -309,19 +314,21 @@ body{
 }
 
 /* 모바일 화면 미디어 쿼리 */
-@media only screen and (max-device-width: 600px), 
+@media only screen and (max-device-width: 600px),
 only screen and (max-width: 600px){
+    body{
+        background-color: white;
+    }
     .header{
         height: 72px;
         background-size: 166px;
         background-color: white;
     }
-    .main{
-        margin: 0;
-        background-color: white;
-    }
     .mainWrapper{
+        margin-top: 18px;
+        background-color: white;
         flex-direction: column;
+        align-items: center;
         gap: 0;
     }
     .myDrinks{

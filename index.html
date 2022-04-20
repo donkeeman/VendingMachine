@@ -12,49 +12,48 @@
     <header class="header">
         <h1 class="title">Vending Machine</h1>
     </header>
-    <main class="main">
         <div class="mainWrapper">
             <!-- 왼쪽 섹션 -->
             <section class="machineSection">
-                <ul class="colaList">
+                <ul class="colaList" id="colaList">
                     <li>
                         <button class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Original_Cola.png">
+                            <img class="colaImage" src="./public/mediaquery/Original_Cola.png" alt="">
                             <strong class="colaName">Original_Cola</strong>
                             <span class="colaPrice">1000원</span>
                         </button>
                     </li>
                     <li>
                         <button class="cola soldout">
-                            <img class="colaImage" src="./public/mediaquery/Violet_Cola.png">
+                            <img class="colaImage" src="./public/mediaquery/Violet_Cola.png" alt="">
                             <strong class="colaName">Violet_Cola</strong>
                             <span class="colaPrice">1000원</span>
                         </button>
                     </li>
                     <li>
                         <button class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Yellow_Cola.png">
+                            <img class="colaImage" src="./public/mediaquery/Yellow_Cola.png" alt="">
                             <strong class="colaName">Yellow_Cola</strong>
                             <span class="colaPrice">1000원</span>
                         </button>
                     </li>
                     <li>
                         <button class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Cool_Cola.png">
+                            <img class="colaImage" src="./public/mediaquery/Cool_Cola.png" alt="">
                             <strong class="colaName">Cool_Cola</strong>
                             <span class="colaPrice">1000원</span>
                         </button>
                     </li>
                     <li>
                         <button class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Green_Cola.png">
+                            <img class="colaImage" src="./public/mediaquery/Green_Cola.png" alt="">
                             <strong class="colaName">Green_Cola</strong>
                             <span class="colaPrice">1000원</span>
                         </button>
                     </li>
                     <li>
                         <button class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Orange_Cola.png">
+                            <img class="colaImage" src="./public/mediaquery/Orange_Cola.png" alt="">
                             <strong class="colaName">Orange_Cola</strong>
                             <span class="colaPrice">1000원</span>
                         </button>
@@ -63,37 +62,44 @@
                 <div class="buyWrapper">
                     <p class="money balance" id="balance">0</p>
                     <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
-    
+
                     <input type="number" placeholder="입금액 입력" class="input deposit" id="deposit" min="0">
                     <button type="button" class="buttons deposit" id="depositButton">입금</button>
-    
-    
+
                     <ul class="buyDrinkList" id="buyDrinkList">
                         <!-- temp -->
                         <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Original_Cola</span>
-                            <div class="buyColaCount">1</div>
+                            <button>
+                                <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="">
+                                <strong class="buyColaName">Original_Cola</strong>
+                                <span class="buyColaCount">1</span>
+                            </button>
                         </li>
                         <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Green_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Green_Cola</span>
-                            <div class="buyColaCount">2</div>
+                            <button>
+                                <img class="buyColaImage" src="./public/mediaquery/Green_Cola.png" alt="">
+                                <strong class="buyColaName">Green_Cola</strong>
+                                <span class="buyColaCount">2</span>
+                            </button>
                         </li>
                         <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Orange_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Orange_Cola</span>
-                            <div class="buyColaCount">1</div>
+                            <button>
+                                <img class="buyColaImage" src="./public/mediaquery/Orange_Cola.png" alt="">
+                                <strong class="buyColaName">Orange_Cola</strong>
+                                <span class="buyColaCount">1</span>
+                            </button>
                         </li>
                         <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Violet_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Violet_Cola</span>
-                            <div class="buyColaCount">5</div>
+                            <button>
+                                <img class="buyColaImage" src="./public/mediaquery/Violet_Cola.png" alt="">
+                                <strong class="buyColaName">Violet_Cola</strong>
+                                <span class="buyColaCount">5</>
+                            </button>
                         </li>
                     </ul>
+
                     <button type="button" class="buttons buy" id="buyButton">획득</button>
                 </div>
-                
             </section>
 
             <section class="mySection">
@@ -110,32 +116,10 @@
                     <!-- 내가 가진 음료수 목록 -->
                     <h2 class="myDrinksHeader">획득한 음료</h2>
                     <ul class="ownDrinkList" id="ownDrinkList">
-                        <!-- temp -->
-                        <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Original_Cola</span>
-                            <div class="buyColaCount">1</div>
-                        </li>
-                        <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Green_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Green_Cola</span>
-                            <div class="buyColaCount">2</div>
-                        </li>
-                        <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Orange_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Orange_Cola</span>
-                            <div class="buyColaCount">1</div>
-                        </li>
-                        <li>
-                            <img class="buyColaImage" src="./public/mediaquery/Violet_Cola.png" alt="buyColaImage">
-                            <span class="colaName">Violet_Cola</span>
-                            <div class="buyColaCount">5</div>
-                        </li>
                     </ul>
                     <p class="totalMoney" id="total">0</p>
                 </div>
             </section>
         </div>
-    </main>
 </body>
 </html>
