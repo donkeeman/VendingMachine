@@ -81,12 +81,12 @@ body{
     gap: 11px 12px;
 }
 
-.myMoney{
+.myMoneyWrapper{
     background-color: white;
     padding: 9px 27px;
 }
 
-.myDrinks{
+.myCola{
     padding: 19px 27px;
     background-color: white;
     margin-top: 20px;
@@ -99,7 +99,6 @@ body{
     padding: 11px 11px 9px 13px;
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-    text-align: center;
     position: relative;
 }
 
@@ -134,6 +133,7 @@ body{
 
 .cola.soldout{
     pointer-events: none;
+    outline: none;
 }
 
 .cola.soldout::after{
@@ -160,7 +160,8 @@ body{
     line-height: 20px;
 }
 
-.money{
+.balanceMoney,
+.myMoney{
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
@@ -170,32 +171,35 @@ body{
     text-align: right;
 }
 
-.money.balance::before{
+.balanceMoney{
+    grid-column: 1 / span 2;
+}
+
+.balanceMoney::before{
     content: "잔액: ";
     display: block;
     float: left;
     font-weight: 500;
 }
 
-.money.have::before{
+.myMoney::before{
     content: "소지금: ";
     display: block;
     float: left;
     font-weight: 500;
 }
 
-.money::after{
+.balanceMoney::after,
+.myMoney::after{
     content: "원";
     display: block;
     float: right;
     margin-left: 5px;
 }
 
-.money.balance{
-    grid-column: 1 / span 2;
-}
-
-.buttons{
+.returnButton,
+.depositButton,
+.buyButton{
     border-radius: 8px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     font-weight: 500;
@@ -203,7 +207,7 @@ body{
     line-height: 19px;
 }
 
-.input.deposit{
+.depositInput{
     font-weight: 500;
     font-size: 13px;
     line-height: 19px;
@@ -216,7 +220,7 @@ body{
     text-indent: 6px;
 }
 
-.buyDrinkList, .ownDrinkList{
+.buyColaList, .ownColaList{
     box-sizing: border-box;
     background-color: #EAE8FE;
     border-radius: 8px;
@@ -226,13 +230,13 @@ body{
     padding: 12px;
 }
 
-.buyDrinkList{
+.buyColaList{
     height: 106px;
     grid-column: 1 / span 2;
 }
 
-.buyDrinkList>li>button,
-.ownDrinkList>li>button{
+.buyColaList>li>button,
+.ownColaList>li>button{
     display: none;
     width: 100%;
     box-sizing: border-box;
@@ -245,12 +249,12 @@ body{
     text-align: left;
 }
 
-.buyDrinkList>li>button.selected,
-.ownDrinkList>li>button.selected{
+.buyColaList>li>button.selected,
+.ownColaList>li>button.selected{
     display: inline-block;
 }
 
-.ownDrinkList>li>button{
+.ownColaList>li>button{
     pointer-events: none;
 }
 
@@ -281,20 +285,20 @@ body{
     padding: 4px 11px 6px 11px;
 }
 
-.buttons.buy{
+.buyButton, .buyButton:hover{
     font-weight: 700;
     background-color: #6327FE;
     color: white;
 }
 
-.myDrinksHeader{
+.myColaHeader{
     text-align: center;
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
 }
 
-.ownDrinkList{
+.ownColaList{
     height: 364px;
     margin: 13px auto 6px auto;
 }

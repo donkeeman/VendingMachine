@@ -1,11 +1,11 @@
-let buyDrinkList = document.getElementById("buyDrinkList");
-let ownDrinkList = document.getElementById("ownDrinkList");
+let buyColaList = document.getElementById("buyColaList");
+let ownColaList = document.getElementById("ownColaList");
 
 let cola = document.querySelectorAll(".cola");
 
 let balance = document.getElementById("balance");
 let deposit = document.getElementById("deposit");
-let have = document.getElementById("have");
+let myMoney = document.getElementById("myMoney");
 let total = document.getElementById("total");
 
 const returnButton = document.getElementById("returnButton");
@@ -30,7 +30,7 @@ for(let i = 0; i<cola.length; i++){
         // if 콜라 재고가 0개가 아닐 때
         // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
         buyColaCount[i]++;
-        setColaCount(buyDrinkList, buyColaCount, i);
+        setColaCount(buyColaList, buyColaCount, i);
         
         // 재고는 1 감소
         colaCount[i]--;
@@ -68,21 +68,21 @@ function buyDrink(){
         for(let i = 0; i<ownColaCount.length; i++){
             ownColaCount[i] += buyColaCount[i];
             buyColaCount[i] = 0;
-            setColaCount(ownDrinkList, ownColaCount, i);
-            setColaCount(buyDrinkList, buyColaCount, i);
+            setColaCount(ownColaList, ownColaCount, i);
+            setColaCount(buyColaList, buyColaCount, i);
         }
     }
 }
 
 function returnMoney(){
-    have.innerHTML = parseInt(have.innerHTML)+parseInt(balance.innerHTML);
+    myMoney.innerHTML = parseInt(myMoney.innerHTML)+parseInt(balance.innerHTML);
     balance.innerHTML = "0";
 }
 
 function depositMoney(){
-    if(parseInt(have.innerHTML) >= parseInt(deposit.value)){
-        balance.innerHTML = parseInt(balance.innerHTML)+parseInt(deposit.value);
-        have.innerHTML = parseInt(have.innerHTML) - parseInt(deposit.value);
+    if(parseInt(myMoney.innerHTML) >= parseInt(deposit.value)){
+        balance.innerHTML = parseInt(balance.innerHTML) + parseInt(deposit.value);
+        myMoney.innerHTML = parseInt(myMoney.innerHTML) - parseInt(deposit.value);
         deposit.value = "";
     }
     else

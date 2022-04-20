@@ -60,13 +60,13 @@
                     </li>
                 </ul>
                 <div class="buyWrapper">
-                    <p class="money balance" id="balance">0</p>
-                    <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
+                    <p class="balanceMoney" id="balance">0</p>
+                    <button type="button" class="returnButton" id="returnButton">거스름돈 반환</button>
 
-                    <input type="number" placeholder="입금액 입력" class="input deposit" id="deposit" min="0">
-                    <button type="button" class="buttons deposit" id="depositButton">입금</button>
+                    <input type="number" placeholder="입금액 입력" class="depositInput" id="deposit" min="0">
+                    <button type="button" class="depositButton" id="depositButton">입금</button>
 
-                    <ul class="buyDrinkList" id="buyDrinkList">
+                    <ul class="buyColaList" id="buyColaList">
                         <li>
                             <button>
                                 <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="">
@@ -111,24 +111,24 @@
                         </li>
                     </ul>
 
-                    <button type="button" class="buttons buy" id="buyButton">획득</button>
+                    <button type="button" class="buyButton" id="buyButton">획득</button>
                 </div>
             </section>
 
             <section class="mySection">
                 <!-- 오른쪽 위 섹션 -->
-                <div class="myMoney">
+                <div class="myMoneyWrapper">
                     <!-- 소지금 -->
-                    <p class="money have" id="have">
+                    <p class="myMoney" id="myMoney">
                         25000
                     </p>
                 </div>
 
                 <!-- 오른쪽 아래 섹션 -->
-                <div class="myDrinks">
+                <div class="myCola">
                     <!-- 내가 가진 음료수 목록 -->
-                    <h2 class="myDrinksHeader">획득한 음료</h2>
-                    <ul class="ownDrinkList" id="ownDrinkList">
+                    <h2 class="myColaHeader">획득한 음료</h2>
+                    <ul class="ownColaList" id="ownColaList">
                         <li>
                             <button>
                                 <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="">
