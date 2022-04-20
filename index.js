@@ -68,13 +68,14 @@ function buyDrink(){
     // 잔액 안 부족하면
     else{
         balance.innerHTML = parseInt(balance.innerHTML) - 1000*totalCount;
-        total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;     cola[i].classList.remove("clicked");
+        total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;
 
         for(let i = 0; i<ownColaCount.length; i++){
             ownColaCount[i] += buyColaCount[i];
             buyColaCount[i] = 0;
             setColaCount(ownColaList, ownColaCount, i);
             setColaCount(buyColaList, buyColaCount, i);
+            cola[i].classList.remove("clicked");
         }
     }
 }
