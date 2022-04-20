@@ -13,9 +13,9 @@ const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
 
 
-// origin, violet, yellow, cool, green, orange
+// origin, violet, yellow, cool, green, orange 순서
 // 콜라의 재고 (아직은 정확한 수치를 모름)
-let colaCount = [0, 0, 0, 0, 0, 0];
+let colaCount = [4, 4, 4, 4, 4, 4];
 // 자판기에서 획득한 콜라의 개수
 let buyColaCount = [0, 0, 0, 0, 0, 0];
 // 구매 후 획득한 음료 리스트에 들어가는 콜라의 개수
@@ -34,13 +34,16 @@ for(let i = 0; i<cola.length; i++){
         
         // 재고는 1 감소
         colaCount[i]--;
+        if(colaCount[i] == 0)
+            this.classList.add("soldout");
         // else
         // 콜라 품절
         // cola[i].classList.add("soldout");
     }
 }
 
-// 구매 리스트의 콜라 버튼 클릭 시
+// 구매 리스트의 콜라 버튼 클릭 시 콜라 개수가 한 개씩 줄어들어야 함
+
 
 returnButton.onclick = returnMoney;
 depositButton.onclick = depositMoney;
