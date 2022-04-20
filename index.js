@@ -1,6 +1,5 @@
 let buyDrinkList = document.getElementById("buyDrinkList");
 let ownDrinkList = document.getElementById("ownDrinkList");
-// let colaList = document.getElementById("colaList");
 
 let cola = document.querySelectorAll(".cola");
 
@@ -23,17 +22,6 @@ let buyColaCount = [0, 0, 0, 0, 0, 0];
 let ownColaCount = [0, 0, 0, 0, 0, 0];
 
 let totalCount = 0;
-// for(let i = 0; i<colaList.childElementCount; i++){
-//     colaList.children[i].onclick = function(){
-//         // if 콜라 재고가 0개가 아닐 때
-//         // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
-//         // 재고는 1 감소
-//         buyColaCount[i]++;
-//         colaCount[i]--;
-//         // else
-//         // 품절 뜨게
-//     }
-// }
 
 for(let i = 0; i<cola.length; i++){
     cola[i].onclick = function(){
@@ -42,6 +30,7 @@ for(let i = 0; i<cola.length; i++){
         // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
         // 재고는 1 감소
         buyColaCount[i]++;
+        setColaCount(buyDrinkList, buyColaCount, i);
         colaCount[i]--;
         // else
         // 품절 뜨게
@@ -52,29 +41,34 @@ returnButton.onclick = returnMoney;
 depositButton.onclick = depositMoney;
 buyButton.onclick = buyDrink;
 
-
-// 잔액 부족 후 이미 선택됐던 리스트를 획득 버튼을 누르면 잔액과 총금액이 비뀌지 않는 문제 발생
 function buyDrink(){
-    
+    // 선택한 음료수의 총 개수 구하기
     totalCount = 0;
-    for(let i = 0; i<buyColaCount.length; i++){
+    for(let i = 0; i<buyColaCount.length; i++)
         totalCount += buyColaCount[i];
-        buyColaCount[i] = 0;
-    }
-    if(1000*totalCount<=parseInt(balance.innerHTML)){
+
+    // 잔액 부족하면
+    if(1000*totalCount>parseInt(balance.innerHTML))
+        alert("잔액이 부족합니다. 입금 후 다시 시도해주세요.");
+    // 잔액 안 부족하면
+    else{
         balance.innerHTML = parseInt(balance.innerHTML) - 1000*totalCount;
         total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;
         for(let i = 0; i<cola.length; i++)
             cola[i].classList.remove("clicked");
-        
-        for(let i = 0; i<buyDrinkList.childElementCount; i++){
-            let drink = buyDrinkList.children[i].cloneNode(true);
-            ownDrinkList.appendChild(drink);
+
+        // for(let i = 0; i<buyDrinkList.childElementCount; i++){
+        //     let drink = buyDrinkList.children[i].cloneNode(true);
+        //     ownDrinkList.appendChild(drink);
+        // }
+
+        for(let i = 0; i<ownColaCount.length; i++){
+            ownColaCount[i] += buyColaCount[i];
+            buyColaCount[i] = 0;
+            setColaCount(ownDrinkList, ownColaCount, i);
+            setColaCount(buyDrinkList, buyColaCount, i);
         }
     }
-    else
-        alert("잔액이 부족합니다. 입금 후 다시 시도해주세요.");
-    
 }
 
 function returnMoney(){
@@ -88,4 +82,10 @@ function depositMoney(){
         have.innerHTML = parseInt(have.innerHTML) - parseInt(deposit.value);
         deposit.value = "";
     }
+    else
+        alert("소지금이 부족합니다. 다시 입력해 주세요.");
+}
+
+function setColaCount(list, countArr, index){
+    list.children[index].lastElementChild.lastElementChild.innerHTML = countArr[index];
 }
