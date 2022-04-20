@@ -31,19 +31,26 @@ for(let i = 0; i<cola.length; i++){
         // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
         buyColaCount[i]++;
         setColaCount(buyColaList, buyColaCount, i);
-        
+
         // 재고는 1 감소
         colaCount[i]--;
         if(colaCount[i] == 0)
             this.classList.add("soldout");
-        // else
-        // 콜라 품절
-        // cola[i].classList.add("soldout");
     }
 }
 
-// 구매 리스트의 콜라 버튼 클릭 시 콜라 개수가 한 개씩 줄어들어야 함
-
+// 구매 리스트의 콜라 버튼 클릭 시 리스트에서 콜라 제거
+for(let i = 0; i<buyColaList.childElementCount; i++){
+    buyColaList.children[i].lastElementChild.onclick = function(){
+        // 클릭할 때마다 획득한 콜라의 수에서 1 감소
+        buyColaCount[i]--;
+        setColaCount(buyColaList, buyColaCount, i);
+        // 콜라 재고는 1 증가
+        colaCount[i]++;
+        if(colaCount[i] != 0)
+            cola[i].classList.remove("soldout");
+    }
+}
 
 returnButton.onclick = returnMoney;
 depositButton.onclick = depositMoney;
@@ -61,9 +68,7 @@ function buyDrink(){
     // 잔액 안 부족하면
     else{
         balance.innerHTML = parseInt(balance.innerHTML) - 1000*totalCount;
-        total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;
-        for(let i = 0; i<cola.length; i++)
-            cola[i].classList.remove("clicked");
+        total.innerHTML = parseInt(total.innerHTML)+1000*totalCount;     cola[i].classList.remove("clicked");
 
         for(let i = 0; i<ownColaCount.length; i++){
             ownColaCount[i] += buyColaCount[i];
@@ -90,8 +95,10 @@ function depositMoney(){
 }
 
 function setColaCount(list, countArr, index){
-    if(countArr[index] == 0)
+    if(countArr[index] == 0){
         list.children[index].lastElementChild.classList.remove("selected");
+        cola[index].classList.remove("clicked");
+    }
     else{
         list.children[index].lastElementChild.lastElementChild.innerHTML = countArr[index];
         list.children[index].lastElementChild.classList.add("selected");
