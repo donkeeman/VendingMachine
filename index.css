@@ -1,3 +1,4 @@
+@charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 /* reset css */
@@ -33,6 +34,7 @@ ul{
 /* design */
 
 body{
+    width: 100%;
     background-color: #EAE8FE;
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -46,7 +48,7 @@ body{
 }
 
 .title{
-    display: none;
+    color: transparent;
 }
 
 .main{
@@ -54,60 +56,43 @@ body{
 }
 
 .mainWrapper{
-    text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 28px;
 }
 
-.sections{
+.machineSection,
+.mySection{
     box-sizing: border-box;
-    width: 330px;
-    height: fit-content;
-    background-color: white;
+    width: 360px;
 }
 
-.sections.machine{
+.machineSection{
+    background-color: white;
     padding: 19px 27px;
+}
+
+.colaList, .buyWrapper{
     display: grid;
     justify-content: center;
-    align-content: flex-start;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
 }
 
-.rightDiv{
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.buyWrapper{
+    margin-top: 20px;
+    gap: 11px 12px;
 }
 
-/* 모바일 화면 미디어 쿼리 */
-@media screen and (max-width: 600px){
-    .header{
-        height: 72px;
-        background-size: 166px;
-        background-color: white;
-    }
-    .main{
-        margin: 0;
-        background-color: white;
-    }
-    .mainWrapper{
-        flex-direction: column;
-        gap: 0;
-    }
-    .rightDiv{
-        gap: 0;
-    }
-}
-
-.sections.myMoney{
+.myMoney{
+    background-color: white;
     padding: 9px 27px;
 }
 
-.sections.myDrinks{
+.myDrinks{
     padding: 19px 27px;
+    background-color: white;
+    margin-top: 20px;
 }
 
 .cola{
@@ -118,25 +103,25 @@ body{
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     text-align: center;
+    position: relative;
 }
 
-.cola:hover{
-    box-sizing: border-box;
-    box-shadow: 0 0 0 3px #6327FE;
+.cola:active{
+    outline: 3px solid #6327FE;
 }
 
 .colaImage{
     width: 36px;
-    height: 65px;
     vertical-align: top;
+    margin: 0 auto;
 }
 
 .colaName{
     display: block;
     font-weight: 500;
-    font-size: 9px;
+    font-size: 10px;
     line-height: 13px;
-    margin: 6px auto 7px auto;
+    margin: 6px 0 7px;
 }
 
 .colaPrice{
@@ -150,33 +135,26 @@ body{
     background-color: #6327FE;
 }
 
-.cola.first{
-    grid-area: 1 / 1 / span 1 / span 1;
+.cola.soldout{
+    pointer-events: none;
 }
 
-.cola.second{
-    grid-area: 1 / 2 / span 1 / span 1;
-}
-
-.cola.third{
-    grid-area: 1 / 3 / span 1 / span 1;
-}
-
-.cola.fourth{
-    grid-area: 2 / 1 / span 1 / span 1;
-}
-
-.cola.fifth{
-    grid-area: 2 / 2 / span 1 / span 1;
-}
-
-.cola.sixth{
-    grid-area: 2 / 3 / span 1 / span 1;
+.cola.soldout::after{
+    display: block;
+    content: "품절";
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(./public/soldout.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .moneyDiv{
-    height: fit-content;
-    padding: 5px 10px;
     background-color: lightgray;
     border-radius: 8px;
     overflow: hidden;
@@ -217,7 +195,7 @@ body{
 }
 
 .money.balance{
-    grid-area: 3 / 1 / span 1 / span 2;
+    grid-column: 1 / span 2;
 }
 
 .buttons{
@@ -228,20 +206,11 @@ body{
     line-height: 19px;
 }
 
-.buttons.return{
-    grid-area: 3 / 3 / span 1 / span 1;
-}
-
-.buttons.deposit{
-    grid-area: depositButton;
-    grid-area: 4 / 3 / span 1 / span 1;
-}
-
 .input.deposit{
     font-weight: 500;
     font-size: 13px;
     line-height: 19px;
-    grid-area: 4 / 1 / span 1 / span 2;
+    grid-column: 1 / span 2;
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     border-radius: 5px;
@@ -262,7 +231,7 @@ body{
 
 .buyDrinkList{
     height: 106px;
-    grid-area: 5 / 1 / span 1 / span 2;
+    grid-column: 1 / span 2;
 }
 
 .buyDrinkList>li,
@@ -285,13 +254,13 @@ body{
 
 .buyColaName{
     font-weight: 500;
-    font-size: 9px;
+    font-size: 10px;
     line-height: 13px;
     color: #333333;
 }
 
 .buyColaCount{
-    /* float: right; */
+    float: right;
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     border-radius: 5px;
@@ -304,13 +273,12 @@ body{
 
 .buttons.buy{
     font-weight: 700;
-    grid-area: buyButton;
     background-color: #6327FE;
     color: white;
-    grid-area: 5 / 3 / span 1 / span 1;
 }
 
 .myDrinksHeader{
+    text-align: center;
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
@@ -340,3 +308,24 @@ body{
     margin-left: 4px;
 }
 
+/* 모바일 화면 미디어 쿼리 */
+@media only screen and (max-device-width: 600px), 
+only screen and (max-width: 600px){
+    .header{
+        height: 72px;
+        background-size: 166px;
+        background-color: white;
+    }
+    .main{
+        margin: 0;
+        background-color: white;
+    }
+    .mainWrapper{
+        flex-direction: column;
+        gap: 0;
+    }
+    .myDrinks{
+        padding: 32px 27px 43px;
+        margin-top: 0;
+    }
+}

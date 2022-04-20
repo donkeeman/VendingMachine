@@ -15,82 +15,98 @@
     <main class="main">
         <div class="mainWrapper">
             <!-- 왼쪽 섹션 -->
-            <section class="sections machine">
-                <button class="cola first">
-                    <img class="colaImage" src="./public/mediaquery/Original_Cola.png" alt="Original_Cola">
-                    <span class="colaName">Original_Cola</span>
-                    <span class="colaPrice">1000원</span>
-                </button>
-                <button class="cola second">
-                    <img class="colaImage" src="./public/mediaquery/Violet_Cola.png" alt="Violet_Cola">
-                    <span class="colaName">Violet_Cola</span>
-                    <span class="colaPrice">1000원</span>
-                </button>
-                <button class="cola third">
-                    <img class="colaImage" src="./public/mediaquery/Yellow_Cola.png" alt="Yellow_Cola">
-                    <span class="colaName">Yellow_Cola</span>
-                    <span class="colaPrice">1000원</span>
-                </button>
-                <button class="cola fourth">
-                    <img class="colaImage" src="./public/mediaquery/Cool_Cola.png" alt="Cool_Cola">
-                    <span class="colaName">Cool_Cola</span>
-                    <span class="colaPrice">1000원</span>
-                </button>
-                <button class="cola fifth">
-                    <img class="colaImage" src="./public/mediaquery/Green_Cola.png" alt="Green_Cola">
-                    <span class="colaName">Green_Cola</span>
-                    <span class="colaPrice">1000원</span>
-                </button>
-                <button class="cola sixth">
-                    <img class="colaImage" src="./public/mediaquery/Orange_Cola.png" alt="Orange_Cola">
-                    <span class="colaName">Orange_Cola</span>
-                    <span class="colaPrice">1000원</span>
-                </button>
-
-                <p class="money balance" id="balance">0</p>
-                <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
-
-                <input type="number" placeholder="입금액 입력" class="input deposit" id="deposit" min="0">
-                <button type="button" class="buttons deposit" id="depositButton">입금</button>
-
-
-                <ul class="buyDrinkList" id="buyDrinkList">
-                    <!-- temp -->
+            <section class="machineSection">
+                <ul class="colaList">
                     <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="buyColaImage">
-                        <span class="colaName">Original_Cola</span>
-                        <div class="buyColaCount">1</div>
+                        <button class="cola">
+                            <img class="colaImage" src="./public/mediaquery/Original_Cola.png">
+                            <strong class="colaName">Original_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
                     </li>
                     <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Green_Cola.png" alt="buyColaImage">
-                        <span class="colaName">Green_Cola</span>
-                        <div class="buyColaCount">2</div>
+                        <button class="cola soldout">
+                            <img class="colaImage" src="./public/mediaquery/Violet_Cola.png">
+                            <strong class="colaName">Violet_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
                     </li>
                     <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Orange_Cola.png" alt="buyColaImage">
-                        <span class="colaName">Orange_Cola</span>
-                        <div class="buyColaCount">1</div>
+                        <button class="cola">
+                            <img class="colaImage" src="./public/mediaquery/Yellow_Cola.png">
+                            <strong class="colaName">Yellow_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
                     </li>
                     <li>
-                        <img class="buyColaImage" src="./public/mediaquery/Violet_Cola.png" alt="buyColaImage">
-                        <span class="colaName">Violet_Cola</span>
-                        <div class="buyColaCount">5</div>
+                        <button class="cola">
+                            <img class="colaImage" src="./public/mediaquery/Cool_Cola.png">
+                            <strong class="colaName">Cool_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="cola">
+                            <img class="colaImage" src="./public/mediaquery/Green_Cola.png">
+                            <strong class="colaName">Green_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="cola">
+                            <img class="colaImage" src="./public/mediaquery/Orange_Cola.png">
+                            <strong class="colaName">Orange_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
                     </li>
                 </ul>
-                <button type="button" class="buttons buy" id="buyButton">획득</button>
+                <div class="buyWrapper">
+                    <p class="money balance" id="balance">0</p>
+                    <button type="button" class="buttons return" id="returnButton">거스름돈 반환</button>
+    
+                    <input type="number" placeholder="입금액 입력" class="input deposit" id="deposit" min="0">
+                    <button type="button" class="buttons deposit" id="depositButton">입금</button>
+    
+    
+                    <ul class="buyDrinkList" id="buyDrinkList">
+                        <!-- temp -->
+                        <li>
+                            <img class="buyColaImage" src="./public/mediaquery/Original_Cola.png" alt="buyColaImage">
+                            <span class="colaName">Original_Cola</span>
+                            <div class="buyColaCount">1</div>
+                        </li>
+                        <li>
+                            <img class="buyColaImage" src="./public/mediaquery/Green_Cola.png" alt="buyColaImage">
+                            <span class="colaName">Green_Cola</span>
+                            <div class="buyColaCount">2</div>
+                        </li>
+                        <li>
+                            <img class="buyColaImage" src="./public/mediaquery/Orange_Cola.png" alt="buyColaImage">
+                            <span class="colaName">Orange_Cola</span>
+                            <div class="buyColaCount">1</div>
+                        </li>
+                        <li>
+                            <img class="buyColaImage" src="./public/mediaquery/Violet_Cola.png" alt="buyColaImage">
+                            <span class="colaName">Violet_Cola</span>
+                            <div class="buyColaCount">5</div>
+                        </li>
+                    </ul>
+                    <button type="button" class="buttons buy" id="buyButton">획득</button>
+                </div>
+                
             </section>
 
-            <div class="rightDiv">
+            <section class="mySection">
                 <!-- 오른쪽 위 섹션 -->
-                <section class="sections myMoney">
+                <div class="myMoney">
                     <!-- 소지금 -->
                     <p class="money have" id="have">
                         25000
                     </p>
-                </section>
+                </div>
 
                 <!-- 오른쪽 아래 섹션 -->
-                <section class="sections myDrinks">
+                <div class="myDrinks">
                     <!-- 내가 가진 음료수 목록 -->
                     <h2 class="myDrinksHeader">획득한 음료</h2>
                     <ul class="ownDrinkList" id="ownDrinkList">
@@ -117,8 +133,8 @@
                         </li>
                     </ul>
                     <p class="totalMoney" id="total">0</p>
-                </section>
-            </div>
+                </div>
+            </section>
         </div>
     </main>
 </body>
