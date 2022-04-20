@@ -234,6 +234,7 @@ body{
 
 .buyDrinkList>li>button,
 .ownDrinkList>li>button{
+    display: none;
     width: 100%;
     box-sizing: border-box;
     margin: 2px auto;
@@ -243,6 +244,11 @@ body{
     background-color: white;
     overflow: hidden;
     text-align: left;
+}
+
+.buyDrinkList>li>button.selected,
+.ownDrinkList>li>button.selected{
+    display: inline-block;
 }
 
 .ownDrinkList>li>button{
