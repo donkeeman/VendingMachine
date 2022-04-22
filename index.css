@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-/* reset css */
+/* reset */
 
 body, header, section, p, div, ul, ul li, h1, h2{
     margin: 0;
@@ -33,7 +33,6 @@ ul{
 /* design */
 
 body{
-    width: 100%;
     background-color: #EAE8FE;
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -52,9 +51,10 @@ body{
 
 .mainWrapper{
     margin: 67px auto;
+    padding: 0 5px;
     display: flex;
     justify-content: center;
-    gap: 28px;
+    gap: 2%;
 }
 
 .machineSection,
@@ -322,9 +322,10 @@ body{
     margin-left: 4px;
 }
 
-/* 모바일 화면 미디어 쿼리 */
-@media only screen and (max-device-width: 600px),
-only screen and (max-width: 600px){
+/* media query */
+
+@media only screen and (max-device-width: 500px),
+only screen and (max-width: 720px){
     body{
         background-color: white;
     }

@@ -12,6 +12,8 @@ const returnButton = document.getElementById("returnButton");
 const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
 
+// 금액 초기화
+document.body.onload = setMoneyFormat;
 
 // origin, violet, yellow, cool, green, orange 순서
 // 콜라의 재고 (아직은 정확한 수치를 모름)
@@ -62,6 +64,13 @@ returnButton.onclick = returnMoney;
 depositButton.onclick = depositMoney;
 buyButton.onclick = buyCola;
 
+
+function setMoneyFormat(){
+    balance.innerHTML = parseInt(balance.innerHTML.replace(",", "")).toLocaleString("en-US");
+    myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", "")).toLocaleString("en-US");
+    total.innerHTML = parseInt(total.innerHTML.replace(",", "")).toLocaleString("en-US");
+}
+
 function buyCola(){
     // 선택한 콜라의 총 개수 최종 확정
     totalCount = 0;
@@ -69,14 +78,15 @@ function buyCola(){
         totalCount += buyColaCount[i];
 
     // 잔액 부족하면
-    if(1000*totalCount>parseInt(balance.innerHTML))
+    if(1000*totalCount>parseInt(balance.innerHTML.replace(",", "")))
         alert("잔액이 부족합니다. 입금 후 다시 시도해주세요.");
     // 잔액 안 부족하면
     else{
         // 잔액 = 잔액 - 음료수 구매액
-        balance.innerHTML = parseInt(balance.innerHTML) - 1000*totalCount;
+        balance.innerHTML = parseInt(balance.innerHTML.replace(",", "")) - 1000*totalCount;
         // 총금액 = 총금액 + 음료수 구매액
-        total.innerHTML = parseInt(total.innerHTML) + 1000*totalCount;
+        total.innerHTML = parseInt(total.innerHTML.replace(",", "")) + 1000*totalCount;
+        setMoneyFormat();
 
         for(let i = 0; i<ownColaCount.length; i++){
             // buyColaCount에 저장했던 콜라 구매 개수를 ownColaCount에 누적
@@ -94,15 +104,17 @@ function buyCola(){
 }
 
 function returnMoney(){
-    myMoney.innerHTML = parseInt(myMoney.innerHTML)+parseInt(balance.innerHTML);
-    balance.innerHTML = "0";
+    myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", ""))+parseInt(balance.innerHTML.replace(",", ""));
+    balance.innerHTML = 0;
+    setMoneyFormat();
 }
 
 function depositMoney(){
-    if(parseInt(myMoney.innerHTML) >= parseInt(deposit.value)){
-        balance.innerHTML = parseInt(balance.innerHTML) + parseInt(deposit.value);
-        myMoney.innerHTML = parseInt(myMoney.innerHTML) - parseInt(deposit.value);
+    if(parseInt(myMoney.innerHTML.replace(",", "")) >= parseInt(deposit.value)){
+        balance.innerHTML = parseInt(balance.innerHTML.replace(",", "")) + parseInt(deposit.value);
+        myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", "")) - parseInt(deposit.value);
         deposit.value = "";
+        setMoneyFormat();
     }
     else
         alert("소지금이 부족합니다. 다시 입력해 주세요.");
