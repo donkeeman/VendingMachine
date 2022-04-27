@@ -31,10 +31,23 @@ for(let i = 0; i<cola.length; i++){
         // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
         cola[i].classList.add("clicked");
 
+        // 누른 콜라의 인덱스랑 매칭해서 이름과 카운트를 넣어야 함
+        // 이름을 검사할지, 혹은 포함여부의 불린 값이 담긴 리스트를 하나 더 만들지
+        // 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함
+        // for(let i = 0; i<buyColaList.childElementCount; i++){
+        //     if(buy)
+        // }
+
+        let li = buyColaList.lastElementChild;
+        buyColaList.appendChild(li.cloneNode(true));
+        li.firstElementChild.children[0].src = this.children[0].src;
+        li.firstElementChild.children[1].innerHTML = this.children[1].innerHTML;
         // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
         buyColaCount[i]++;
-        setColaCount(buyColaList, buyColaCount, i);
+        li.firstElementChild.children[2].innerHTML = buyColaCount[i];
+        // setColaCount(buyColaList, buyColaCount, i);
 
+        li.classList.add("selected");
         // 콜라의 재고는 1 감소
         colaCount[i]--;
 
@@ -49,7 +62,7 @@ for(let i = 0; i<buyColaList.childElementCount; i++){
     buyColaList.children[i].lastElementChild.onclick = function(){
         // 클릭할 때마다 획득한 콜라의 수에서 1 감소
         buyColaCount[i]--;
-        setColaCount(buyColaList, buyColaCount, i);
+        // setColaCount(buyColaList, buyColaCount, i);
 
         // 콜라 재고는 1 증가
         colaCount[i]++;
@@ -97,9 +110,9 @@ function buyCola(){
             buyColaCount[i] = 0;
 
             // 획득 리스트에 콜라 개수 갱신
-            setColaCount(ownColaList, ownColaCount, i);
+            // setColaCount(ownColaList, ownColaCount, i);
             // 구매 리스트에 콜라 개수 갱신 (0이 되었으므로 리스트에서 보이지 않게 함)
-            setColaCount(buyColaList, buyColaCount, i);
+            // setColaCount(buyColaList, buyColaCount, i);
 
             // 콜라 버튼에서 clicked 클래스 제거
             cola[i].classList.remove("clicked");
