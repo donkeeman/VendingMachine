@@ -31,6 +31,11 @@ for(let i = 0; i<cola.length; i++){
         // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
         cola[i].classList.add("clicked");
 
+        let colaElem = document.createElement("li");
+        let colaElemButton = colaElem.appendChild("button");
+        colaElemButton.src = "./public/mediaquery/"
+
+
         // 누른 콜라의 인덱스랑 매칭해서 이름과 카운트를 넣어야 함
         // 이름을 검사할지, 혹은 포함여부의 불린 값이 담긴 리스트를 하나 더 만들지
         // 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함

@@ -226,16 +226,6 @@ body{
     text-align: left;
 }
 
-.buyColaList>li,
-.ownColaList>li{
-    display: none;
-}
-
-.buyColaList>li.selected,
-.ownColaList>li.selected{
-    display: list-item;
-}
-
 .ownColaList>li>button{
     pointer-events: none;
 }
