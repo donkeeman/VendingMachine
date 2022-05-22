@@ -15,9 +15,7 @@ const buyButton = document.getElementById("buyButton");
 // 금액 초기화
 document.body.addEventListener("load", setMoneyFormat);
 
-// origin, violet, yellow, cool, green, orange 순서
-// 콜라의 재고 (아직은 정확한 수치를 모름)
-
+// 콜라 정보 (이미지 경로, 이름, 재고, 구매 개수, 획득 개수 순)
 let colaInfo = [
     {
         src: "./public/mediaquery/Original_Cola.png",
@@ -63,12 +61,6 @@ let colaInfo = [
     },
 ];
 
-// let count = [4, 4, 4, 4, 4, 4];
-// 자판기에서 획득한 콜라의 개수
-// let buyColaCount = [0, 0, 0, 0, 0, 0];
-// 구매 후 획득한 음료 리스트에 들어가는 콜라의 개수
-// let ownColaCount = [0, 0, 0, 0, 0, 0];
-
 let totalCount = 0;
 
 // 콜라 버튼 클릭 시 구매 리스트에 추가
@@ -87,7 +79,8 @@ for(let i = 0; i<cola.length; i++){
         if(colaInfo[i].stock === 0)
             this.classList.add("soldout");
 
-        // 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함
+        if(isExist(colaInfo[i].name) === -1){
+
         // 획득 리스트 안에 음료가 없다면, 새로 추가
         let li = document.createElement("li");
         let button = document.createElement("button");
@@ -104,6 +97,11 @@ for(let i = 0; i<cola.length; i++){
         button.append(colaImg, colaName, colaCount);
         li.appendChild(button);
         buyColaList.appendChild(li);
+        }
+// 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함
+        else{
+            buyColaList.children[isExist(colaInfo[i].name)].lastElementChild.lastElementChild.innerText = colaInfo[i].buy;
+        }
     }
 }
 
@@ -126,6 +124,14 @@ for(let i = 0; i<buyColaList.childElementCount; i++){
 returnButton.onclick = returnMoney;
 depositButton.onclick = depositMoney;
 buyButton.onclick = buyCola;
+
+const isExist = (name) => {
+    for(let i = 0; i<buyColaList.childElementCount; i++){
+        if(buyColaList.children[i].firstElementChild.firstElementChild.nextSibling.innerText === name)
+        return i;
+    }
+    return -1;
+}
 
 // 돈 관련 변수에 세 자리마다 ','가 추가된 포맷을 지정해주는 함수
 function setMoneyFormat(){
