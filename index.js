@@ -13,15 +13,61 @@ const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
 
 // 금액 초기화
-document.body.onload = setMoneyFormat;
+document.body.addEventListener("load", setMoneyFormat);
 
 // origin, violet, yellow, cool, green, orange 순서
 // 콜라의 재고 (아직은 정확한 수치를 모름)
-let colaCount = [4, 4, 4, 4, 4, 4];
+
+let colaInfo = [
+    {
+        src: "./public/mediaquery/Original_Cola.png",
+        name: "Original_cola",
+        stock: 4,
+        buy: 0,
+        own: 0,
+    },
+    {
+        src: "./public/mediaquery/Violet_Cola.png",
+        name: "Violet_cola",
+        stock: 4,
+        buy: 0,
+        own: 0,
+    },
+    {
+        src: "./public/mediaquery/Yellow_Cola.png",
+        name: "Yellow_cola",
+        stock: 4,
+        buy: 0,
+        own: 0,
+    },
+    {
+        src: "./public/mediaquery/Cool_Cola.png",
+        name: "Cool_cola",
+        stock: 4,
+        buy: 0,
+        own: 0,
+    },
+    {
+        src: "./public/mediaquery/Green_Cola.png",
+        name: "Green_cola",
+        stock: 4,
+        buy: 0,
+        own: 0,
+    },
+    {
+        src: "./public/mediaquery/Orange_Cola.png",
+        name: "Orange_cola",
+        stock: 4,
+        buy: 0,
+        own: 0,
+    },
+];
+
+// let count = [4, 4, 4, 4, 4, 4];
 // 자판기에서 획득한 콜라의 개수
-let buyColaCount = [0, 0, 0, 0, 0, 0];
+// let buyColaCount = [0, 0, 0, 0, 0, 0];
 // 구매 후 획득한 음료 리스트에 들어가는 콜라의 개수
-let ownColaCount = [0, 0, 0, 0, 0, 0];
+// let ownColaCount = [0, 0, 0, 0, 0, 0];
 
 let totalCount = 0;
 
@@ -31,34 +77,33 @@ for(let i = 0; i<cola.length; i++){
         // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
         cola[i].classList.add("clicked");
 
-        let colaElem = document.createElement("li");
-        let colaElemButton = colaElem.appendChild("button");
-        colaElemButton.src = "./public/mediaquery/"
-
-
-        // 누른 콜라의 인덱스랑 매칭해서 이름과 카운트를 넣어야 함
-        // 이름을 검사할지, 혹은 포함여부의 불린 값이 담긴 리스트를 하나 더 만들지
-        // 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함
-        // for(let i = 0; i<buyColaList.childElementCount; i++){
-        //     if(buy)
-        // }
-
-        let li = buyColaList.lastElementChild;
-        buyColaList.appendChild(li.cloneNode(true));
-        li.firstElementChild.children[0].src = this.children[0].src;
-        li.firstElementChild.children[1].innerHTML = this.children[1].innerHTML;
         // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
-        buyColaCount[i]++;
-        li.firstElementChild.children[2].innerHTML = buyColaCount[i];
-        // setColaCount(buyColaList, buyColaCount, i);
+        colaInfo[i].buy++;
 
-        li.classList.add("selected");
         // 콜라의 재고는 1 감소
-        colaCount[i]--;
+        colaInfo[i].stock--;
 
         // 재고가 0이면 품절 상태를 표시하는 soldout 클래스를 버튼에 추가
-        if(colaCount[i] == 0)
+        if(colaInfo[i].stock === 0)
             this.classList.add("soldout");
+
+        // 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함
+        // 획득 리스트 안에 음료가 없다면, 새로 추가
+        let li = document.createElement("li");
+        let button = document.createElement("button");
+        let colaImg = document.createElement("img");
+        colaImg.classList.add("buyColaImage");
+        colaImg.src = colaInfo[i].src;
+        let colaName = document.createElement("strong");
+        colaName.classList.add("buyColaName");
+        colaName.innerText = colaInfo[i].name;
+        let colaCount = document.createElement("span");
+        colaCount.classList.add("buyColaCount");
+        colaCount.innerText = colaInfo[i].buy;
+
+        button.append(colaImg, colaName, colaCount);
+        li.appendChild(button);
+        buyColaList.appendChild(li);
     }
 }
 
