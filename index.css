@@ -213,6 +213,10 @@ body{
     grid-column: 1 / span 2;
 }
 
+.buyColaList>li.hide, .ownColaList>li.hide{
+    display: none;
+}
+
 .buyColaList>li>button,
 .ownColaList>li>button{
     width: 100%;

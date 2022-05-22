@@ -63,6 +63,31 @@ let colaInfo = [
 
 let totalCount = 0;
 
+const createLi = (obj) => {
+    let li = document.createElement("li");
+    let button = document.createElement("button");
+    let colaImg = document.createElement("img");
+    colaImg.classList.add("buyColaImage");
+    colaImg.src = obj.src;
+    let colaName = document.createElement("strong");
+    colaName.classList.add("buyColaName");
+    colaName.innerText = obj.name;
+    let colaCount = document.createElement("span");
+    colaCount.classList.add("buyColaCount");
+    colaCount.innerText = obj.buy;
+
+    button.append(colaImg, colaName, colaCount);
+    li.appendChild(button);
+    if(obj.buy != 0)
+        li.classList.remove("hide");
+    else{
+        li.classList.add("hide");
+}
+    // li.classList.add("hide");
+    return li;
+    // buyColaList.appendChild(li);
+}
+
 // 콜라 버튼 클릭 시 구매 리스트에 추가
 for(let i = 0; i<cola.length; i++){
     cola[i].onclick = function(){
@@ -79,29 +104,31 @@ for(let i = 0; i<cola.length; i++){
         if(colaInfo[i].stock === 0)
             this.classList.add("soldout");
 
-        if(isExist(colaInfo[i].name) === -1){
+        // buyColaList.appendChild(createLi(colaInfo[i]));
+        
+        // if(isExist(colaInfo[i].name) === -1){
 
-        // 획득 리스트 안에 음료가 없다면, 새로 추가
-        let li = document.createElement("li");
-        let button = document.createElement("button");
-        let colaImg = document.createElement("img");
-        colaImg.classList.add("buyColaImage");
-        colaImg.src = colaInfo[i].src;
-        let colaName = document.createElement("strong");
-        colaName.classList.add("buyColaName");
-        colaName.innerText = colaInfo[i].name;
-        let colaCount = document.createElement("span");
-        colaCount.classList.add("buyColaCount");
-        colaCount.innerText = colaInfo[i].buy;
+        // // 획득 리스트 안에 음료가 없다면, 새로 추가
+        // let li = document.createElement("li");
+        // let button = document.createElement("button");
+        // let colaImg = document.createElement("img");
+        // colaImg.classList.add("buyColaImage");
+        // colaImg.src = colaInfo[i].src;
+        // let colaName = document.createElement("strong");
+        // colaName.classList.add("buyColaName");
+        // colaName.innerText = colaInfo[i].name;
+        // let colaCount = document.createElement("span");
+        // colaCount.classList.add("buyColaCount");
+        // colaCount.innerText = colaInfo[i].buy;
 
-        button.append(colaImg, colaName, colaCount);
-        li.appendChild(button);
-        buyColaList.appendChild(li);
-        }
+        // button.append(colaImg, colaName, colaCount);
+        // li.appendChild(button);
+        // buyColaList.appendChild(li);
+        // }
 // 이미 획득 리스트 안에 음료가 있다면, 새로 추가하는 대신 카운트를 증가시켜야 함
-        else{
-            buyColaList.children[isExist(colaInfo[i].name)].lastElementChild.lastElementChild.innerText = colaInfo[i].buy;
-        }
+        // else{
+        //     buyColaList.children[isExist(colaInfo[i].name)].lastElementChild.lastElementChild.innerText = colaInfo[i].buy;
+        // }
     }
 }
 
@@ -109,7 +136,7 @@ for(let i = 0; i<cola.length; i++){
 for(let i = 0; i<buyColaList.childElementCount; i++){
     buyColaList.children[i].lastElementChild.onclick = function(){
         // 클릭할 때마다 획득한 콜라의 수에서 1 감소
-        buyColaCount[i]--;
+        // this.lastElementChild.innerText = 
         // setColaCount(buyColaList, buyColaCount, i);
 
         // 콜라 재고는 1 증가
