@@ -83,9 +83,7 @@ const createLi = (obj) => {
     else{
         li.classList.add("hide");
 }
-    // li.classList.add("hide");
     return li;
-    // buyColaList.appendChild(li);
 }
 
 // 콜라 버튼 클릭 시 구매 리스트에 추가
