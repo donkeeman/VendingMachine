@@ -13,52 +13,41 @@ const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
 
 // 금액 초기화
-document.body.addEventListener("load", setMoneyFormat);
+document.body.addEventListener("load", setMoneyFormat());
+
+class Cola{
+    constructor(name){
+        this.src = `./public/mediaquery/${name}.png`
+        this.name = name;
+        this.stock = 4;
+        this.buy = 0;
+        this.own = 0;
+    }
+    getBuy(){
+        return this.buy;
+    }
+    getOwn(){
+        return this.own;
+    }
+    increaseBuy(){
+        this.buy++;
+    }
+    decreaseStock(){
+        this.stock--;
+    }
+    setOwn(n){
+        this.own += n;
+    }
+}
 
 // 콜라 정보 (이미지 경로, 이름, 재고, 구매 개수, 획득 개수 순)
 let colaInfo = [
-    {
-        src: "./public/mediaquery/Original_Cola.png",
-        name: "Original_cola",
-        stock: 4,
-        buy: 0,
-        own: 0,
-    },
-    {
-        src: "./public/mediaquery/Violet_Cola.png",
-        name: "Violet_cola",
-        stock: 4,
-        buy: 0,
-        own: 0,
-    },
-    {
-        src: "./public/mediaquery/Yellow_Cola.png",
-        name: "Yellow_cola",
-        stock: 4,
-        buy: 0,
-        own: 0,
-    },
-    {
-        src: "./public/mediaquery/Cool_Cola.png",
-        name: "Cool_cola",
-        stock: 4,
-        buy: 0,
-        own: 0,
-    },
-    {
-        src: "./public/mediaquery/Green_Cola.png",
-        name: "Green_cola",
-        stock: 4,
-        buy: 0,
-        own: 0,
-    },
-    {
-        src: "./public/mediaquery/Orange_Cola.png",
-        name: "Orange_cola",
-        stock: 4,
-        buy: 0,
-        own: 0,
-    },
+    new Cola("Original_Cola"),
+    new Cola("Violet_Cola"),
+    new Cola("Yellow_Cola"),
+    new Cola("Cool_Cola"),
+    new Cola("Green_Cola"),
+    new Cola("Orange_Cola")
 ];
 
 let totalCount = 0;
