@@ -29,11 +29,13 @@ class Cola{
     getOwn(){
         return this.own;
     }
-    increaseBuy(){
+    buyCola(){
         this.buy++;
-    }
-    decreaseStock(){
         this.stock--;
+    }
+    refundCola(){
+        this.buy--;
+        this.stock++;
     }
     setOwn(n){
         this.own += n;
@@ -67,48 +69,32 @@ const createLi = (obj) => {
 
     button.append(colaImg, colaName, colaCount);
     li.appendChild(button);
-    if(obj.buy != 0)
-        li.classList.remove("hide");
-    else{
-        li.classList.add("hide");
-}
     return li;
 }
 
 // 콜라 버튼 클릭 시 구매 리스트에 추가
 for(let i = 0; i<cola.length; i++){
-    cola[i].onclick = () => {
+    cola[i].addEventListener("click", () => {
         // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
         cola[i].classList.add("clicked");
 
-        // 클릭할 때마다 획득하는 콜라의 개수는 1 증가
-        colaInfo[i].buy++;
-
-        // 콜라의 재고는 1 감소
-        colaInfo[i].stock--;
-
+        colaInfo[i].buyCola();
         // 재고가 0이면 품절 상태를 표시하는 soldout 클래스를 버튼에 추가
         if(colaInfo[i].stock === 0)
             this.classList.add("soldout");
 
         // 콜라 정보를 업데이트하는 함수 필요
-    }
+    });
 }
 
 // 구매 리스트의 콜라 버튼 클릭 시 리스트에서 콜라 환불
 for(let i = 0; i<buyColaList.childElementCount; i++){
-    buyColaList.children[i].lastElementChild.onclick = () => {
-        // 클릭할 때마다 획득한 콜라의 수에서 1 감소
-        // this.lastElementChild.innerText = 
-        // setColaCount(buyColaList, buyColaCount, i);
-
-        // 콜라 재고는 1 증가
-        colaCount[i]++;
-
-        // 콜라의 재고가 0이었다가 다시 1개 이상 생긴 경우 soldout 클래스를 제거하고 원래대로 되돌림
-        if(colaCount[i] != 0)
-            cola[i].classList.remove("soldout");
-    }
+    buyColaList.children[i].lastElementChild.addEventListener("click", () => {
+        colaInfo[i].refundCola();
+        if(colaInfo[i].stock !== 0){
+            this.classList.remove("soldout");
+        }
+    })
 }
 
 returnButton.onclick = returnMoney;
