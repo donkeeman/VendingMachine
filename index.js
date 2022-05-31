@@ -38,6 +38,9 @@ class Cola{
         this.buy--;
         this.stock++;
     }
+    clearBuy(){
+        this.buy = 0;
+    }
     setOwn(n){
         this.own += n;
     }
@@ -53,8 +56,8 @@ let colaInfo = [
     new Cola("Orange_Cola"),
 ];
 
-let totalCount = 0;
 let buyList = [];
+let ownList = [];
 
 // 금액 초기화
 setMoneyFormat();
@@ -64,29 +67,28 @@ for(let cola of colaInfo){
 }
 
 // 콜라 버튼 클릭 시 구매 리스트에 추가
-for(let i = 0; i<colaInfo.length; i++){
+for(let i in colaInfo){
     let cola = document.querySelectorAll(".cola");
     cola[i].addEventListener("click", () => {
         // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
         cola[i].classList.add("clicked");
-
         colaInfo[i].buyCola();
         // 재고가 0이면 품절 상태를 표시하는 soldout 클래스를 버튼에 추가
         if(colaInfo[i].stock === 0)
             cola[i].classList.add("soldout");
         if(buyList.includes(colaInfo[i].name)){
             let index = buyList.indexOf(colaInfo[i].name);
-            buyColaList.children[index].innerHTML = createLi(colaInfo[i]).innerHTML;
+            buyColaList.children[index].innerHTML = createLi(colaInfo[i], "buy").innerHTML;
         }
         else{
-            buyColaList.appendChild(createLi(colaInfo[i]));
+            buyColaList.appendChild(createLi(colaInfo[i], "buy"));
             buyList.push(colaInfo[i].name);
         }
     });
 }
 
 // 구매 리스트의 콜라 버튼 클릭 시 리스트에서 콜라 환불
-for(let i = 0; i<buyColaList.childElementCount; i++){
+for(let i in buyColaList.childElementCount){
     buyColaList.children[i].lastElementChild.addEventListener("click", () => {
         colaInfo[i].refundCola();
         buyColaList.children[index].innerHTML = createLi(colaInfo[i]).innerHTML;
@@ -96,17 +98,9 @@ for(let i = 0; i<buyColaList.childElementCount; i++){
     })
 }
 
-returnButton.onclick = returnMoney;
-depositButton.onclick = depositMoney;
-buyButton.onclick = buyCola;
-
-const isExist = (name) => {
-    for(let i = 0; i<buyColaList.childElementCount; i++){
-        if(buyColaList.children[i].firstElementChild.firstElementChild.nextSibling.innerText === name)
-        return i;
-    }
-    return -1;
-}
+returnButton.addEventListener("click", returnMoney);
+depositButton.addEventListener("click", depositMoney);
+buyButton.addEventListener("click", buyCola);
 
 function createCola(obj) {
     let li = document.createElement("li");
@@ -126,7 +120,7 @@ function createCola(obj) {
     return li;
 }
 
-function createLi(obj) {
+function createLi(obj, state) {
     let li = document.createElement("li");
     let button = document.createElement("button");
     let colaImg = document.createElement("img");
@@ -137,8 +131,12 @@ function createLi(obj) {
     colaName.innerText = obj.name;
     let colaCount = document.createElement("span");
     colaCount.classList.add("buyColaCount");
-    colaCount.innerText = obj.buy;
-
+    if(state === "buy"){
+        colaCount.innerText = obj.buy;
+    }
+    else if(state === "own"){
+        colaCount.innerText = obj.own;
+    }
     button.append(colaImg, colaName, colaCount);
     li.appendChild(button);
     return li;
@@ -154,10 +152,7 @@ function setMoneyFormat(){
 // 획득 버튼을 누르면 구매 리스트에 있는 콜라가 획득 리스트로 이동하는 함수
 function buyCola(){
     // 선택한 콜라의 총 개수 최종 확정
-    totalCount = 0;
-    // 구매 리스트의 개수의 총합 구하기
-    for(let i = 0; i<buyColaCount.length; i++)
-        totalCount += buyColaCount[i];
+    let totalCount = colaInfo.map(cola => cola.getBuy()).reduce((total, num) => total+num, 0);
 
     // 잔액 부족하면
     if(1000*totalCount>parseInt(balance.innerHTML.replace(",", "")))
@@ -169,21 +164,28 @@ function buyCola(){
         // 총금액 = 원래 총금액 + 음료수 구매액
         total.innerHTML = parseInt(total.innerHTML.replace(",", "")) + 1000*totalCount;
         setMoneyFormat();
-
-        for(let i = 0; i<ownColaCount.length; i++){
-            // buyColaCount에 저장했던 콜라 구매 개수를 ownColaCount에 누적
-            ownColaCount[i] += buyColaCount[i];
-            // buyColaCount는 초기화
-            buyColaCount[i] = 0;
-
-            // 획득 리스트에 콜라 개수 갱신
-            // setColaCount(ownColaList, ownColaCount, i);
-            // 구매 리스트에 콜라 개수 갱신 (0이 되었으므로 리스트에서 보이지 않게 함)
-            // setColaCount(buyColaList, buyColaCount, i);
-
-            // 콜라 버튼에서 clicked 클래스 제거
-            cola[i].classList.remove("clicked");
+        for(let cola of buyList){
+            if(!ownList.includes(cola)){
+                ownList.push(cola);
+            }
         }
+        for(let i in colaInfo){
+                colaInfo[i].setOwn(colaInfo[i].getBuy());
+        }
+        ownColaList.innerHTML = "";
+        for(let cola of ownList){
+            // 콜라 obj가 인수로 들어가야 하는데 지금 cola는 이름만 가지고 있음...
+            let colaObj = colaInfo.filter(obj => obj.name === cola)[0];
+            console.log(colaObj);
+            ownColaList.appendChild(createLi(colaObj, "own"));
+            console.log(createLi(colaObj, "own"));
+            colaObj.clearBuy();
+        }
+        buyList = [];
+        buyColaList.innerHTML = "";
+        document.querySelectorAll(".cola").forEach(cola => {
+            cola.classList.remove("clicked");
+        })
     }
 }
 
@@ -210,19 +212,5 @@ function depositMoney(){
         // 입력 input값 초기화
         deposit.value = "";
         setMoneyFormat();
-    }
-}
-
-// 구매 or 획득 리스트의 값 변경
-function setColaCount(list, countArr, index){
-    // 해당 리스트 원소의 값이 0이라면, display:none인 클래스로 바꿔서 보이지 않게 한다
-    if(countArr[index] == 0){
-        list.children[index].lastElementChild.classList.remove("selected");
-        cola[index].classList.remove("clicked");
-    }
-    // 해당 리스트 원소의 값이 0이 아니라면, display를 보이게 하는 클래스를 추가하거나, 원소의 값을 늘린다
-    else{
-        list.children[index].lastElementChild.lastElementChild.innerHTML = countArr[index];
-        list.children[index].lastElementChild.classList.add("selected");
     }
 }
