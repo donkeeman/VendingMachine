@@ -1,3 +1,4 @@
+let colaList = document.getElementById("colaList");
 let buyColaList = document.getElementById("buyColaList");
 let ownColaList = document.getElementById("ownColaList");
 
@@ -12,9 +13,12 @@ const returnButton = document.getElementById("returnButton");
 const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
 
+let buyList = [];
+
 // 금액 초기화
 document.body.addEventListener("load", setMoneyFormat());
 
+// 콜라 클래스
 class Cola{
     constructor(name){
         this.src = `./public/mediaquery/${name}.png`
@@ -22,12 +26,16 @@ class Cola{
         this.stock = 4;
         this.buy = 0;
         this.own = 0;
+        this.price = 1000;
     }
     getBuy(){
         return this.buy;
     }
     getOwn(){
         return this.own;
+    }
+    getPrice(){
+        return this.price;
     }
     buyCola(){
         this.buy++;
@@ -53,6 +61,23 @@ let colaInfo = [
 ];
 
 let totalCount = 0;
+
+const createCola = (obj) => {
+    /*
+    <li>
+                        <button class="cola">
+                            <img class="colaImage" src="./public/mediaquery/Original_Cola.png" alt="">
+                            <strong class="colaName">Original_Cola</strong>
+                            <span class="colaPrice">1000원</span>
+                        </button>
+                    </li>
+    */
+   let li = document.createElement("li");
+   let colaButton = document.createElement("button");
+   let colaImg = document.createElement("img");
+   let colaName = document.createElement("strong");
+   let 
+}
 
 const createLi = (obj) => {
     let li = document.createElement("li");
@@ -81,9 +106,17 @@ for(let i = 0; i<cola.length; i++){
         colaInfo[i].buyCola();
         // 재고가 0이면 품절 상태를 표시하는 soldout 클래스를 버튼에 추가
         if(colaInfo[i].stock === 0)
-            this.classList.add("soldout");
-
+            cola[i].classList.add("soldout");
+        if(buyList.includes(colaInfo[i].name)){
+            let index = buyList.indexOf(colaInfo[i].name);
+            buyColaList.children[index].innerHTML = createLi(colaInfo[i]).innerHTML;
+        }
+        else{
+            buyColaList.appendChild(createLi(colaInfo[i]));
+            buyList.push(colaInfo[i].name);
+        }
         // 콜라 정보를 업데이트하는 함수 필요
+
     });
 }
 
@@ -91,8 +124,9 @@ for(let i = 0; i<cola.length; i++){
 for(let i = 0; i<buyColaList.childElementCount; i++){
     buyColaList.children[i].lastElementChild.addEventListener("click", () => {
         colaInfo[i].refundCola();
+        buyColaList.children[index].innerHTML = createLi(colaInfo[i]).innerHTML;
         if(colaInfo[i].stock !== 0){
-            this.classList.remove("soldout");
+            buyColaList.children[i].lastElementChild.classList.remove("soldout");
         }
     })
 }
