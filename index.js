@@ -2,8 +2,6 @@ let colaList = document.getElementById("colaList");
 let buyColaList = document.getElementById("buyColaList");
 let ownColaList = document.getElementById("ownColaList");
 
-let cola = document.querySelectorAll(".cola");
-
 let balance = document.getElementById("balance");
 let deposit = document.getElementById("deposit");
 let myMoney = document.getElementById("myMoney");
@@ -12,11 +10,6 @@ let total = document.getElementById("total");
 const returnButton = document.getElementById("returnButton");
 const depositButton = document.getElementById("depositButton");
 const buyButton = document.getElementById("buyButton");
-
-let buyList = [];
-
-// 금액 초기화
-document.body.addEventListener("load", setMoneyFormat());
 
 // 콜라 클래스
 class Cola{
@@ -57,48 +50,22 @@ let colaInfo = [
     new Cola("Yellow_Cola"),
     new Cola("Cool_Cola"),
     new Cola("Green_Cola"),
-    new Cola("Orange_Cola")
+    new Cola("Orange_Cola"),
 ];
 
 let totalCount = 0;
+let buyList = [];
 
-const createCola = (obj) => {
-    /*
-    <li>
-                        <button class="cola">
-                            <img class="colaImage" src="./public/mediaquery/Original_Cola.png" alt="">
-                            <strong class="colaName">Original_Cola</strong>
-                            <span class="colaPrice">1000원</span>
-                        </button>
-                    </li>
-    */
-   let li = document.createElement("li");
-   let colaButton = document.createElement("button");
-   let colaImg = document.createElement("img");
-   let colaName = document.createElement("strong");
-   let 
-}
-
-const createLi = (obj) => {
-    let li = document.createElement("li");
-    let button = document.createElement("button");
-    let colaImg = document.createElement("img");
-    colaImg.classList.add("buyColaImage");
-    colaImg.src = obj.src;
-    let colaName = document.createElement("strong");
-    colaName.classList.add("buyColaName");
-    colaName.innerText = obj.name;
-    let colaCount = document.createElement("span");
-    colaCount.classList.add("buyColaCount");
-    colaCount.innerText = obj.buy;
-
-    button.append(colaImg, colaName, colaCount);
-    li.appendChild(button);
-    return li;
+// 금액 초기화
+setMoneyFormat();
+// 자판기 영역에 콜라 표시
+for(let cola of colaInfo){
+    colaList.appendChild(createCola(cola));
 }
 
 // 콜라 버튼 클릭 시 구매 리스트에 추가
-for(let i = 0; i<cola.length; i++){
+for(let i = 0; i<colaInfo.length; i++){
+    let cola = document.querySelectorAll(".cola");
     cola[i].addEventListener("click", () => {
         // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
         cola[i].classList.add("clicked");
@@ -115,8 +82,6 @@ for(let i = 0; i<cola.length; i++){
             buyColaList.appendChild(createLi(colaInfo[i]));
             buyList.push(colaInfo[i].name);
         }
-        // 콜라 정보를 업데이트하는 함수 필요
-
     });
 }
 
@@ -141,6 +106,42 @@ const isExist = (name) => {
         return i;
     }
     return -1;
+}
+
+function createCola(obj) {
+    let li = document.createElement("li");
+    let colaButton = document.createElement("button");
+    colaButton.classList.add("cola");
+    let colaImg = document.createElement("img");
+    colaImg.classList.add("colaImage");
+    colaImg.src = obj.src;
+    let colaName = document.createElement("strong");
+    colaName.classList.add("colaName");
+    colaName.innerText = obj.name;
+    let colaPrice = document.createElement("span");
+    colaPrice.classList.add("colaPrice");
+    colaPrice.innerText = `${obj.price}원`;
+    colaButton.append(colaImg, colaName, colaPrice);
+    li.appendChild(colaButton);
+    return li;
+}
+
+function createLi(obj) {
+    let li = document.createElement("li");
+    let button = document.createElement("button");
+    let colaImg = document.createElement("img");
+    colaImg.classList.add("buyColaImage");
+    colaImg.src = obj.src;
+    let colaName = document.createElement("strong");
+    colaName.classList.add("buyColaName");
+    colaName.innerText = obj.name;
+    let colaCount = document.createElement("span");
+    colaCount.classList.add("buyColaCount");
+    colaCount.innerText = obj.buy;
+
+    button.append(colaImg, colaName, colaCount);
+    li.appendChild(button);
+    return li;
 }
 
 // 돈 관련 변수에 세 자리마다 ','가 추가된 포맷을 지정해주는 함수
