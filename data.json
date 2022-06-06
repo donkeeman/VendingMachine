@@ -1,4 +1,4 @@
-{
+[{
     "src":"/public/mediaquery/Original_Cola.png",
     "name": "Original_Cola",
     "stock": 4,
@@ -45,4 +45,4 @@
     "buy": 0,
     "own": 0,
     "price": 1000
-}
+}]
