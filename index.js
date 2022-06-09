@@ -56,9 +56,10 @@ let colaInfo = [
     new Cola("Orange_Cola"),
 ];
 
-let buyList = [];
-let ownList = [];
+let buyList = new Set();
+let ownList = new Set();
 
+let cola;
 // 금액 초기화
 setMoneyFormat();
 // 자판기 영역에 콜라 표시
@@ -68,35 +69,30 @@ for(let cola of colaInfo){
 
 // 콜라 버튼 클릭 시 구매 리스트에 추가
 for(let i in colaInfo){
-    let cola = document.querySelectorAll(".cola");
+    cola = document.querySelectorAll(".cola");
     cola[i].addEventListener("click", () => {
-        // 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
-        cola[i].classList.add("clicked");
         colaInfo[i].buyCola();
+        drawOutline(true, cola[i]);
         // 재고가 0이면 품절 상태를 표시하는 soldout 클래스를 버튼에 추가
-        if(colaInfo[i].stock === 0)
+        if(colaInfo[i].stock === 0){
             cola[i].classList.add("soldout");
-        if(buyList.includes(colaInfo[i].name)){
-            let index = buyList.indexOf(colaInfo[i].name);
+        }
+        else{
+            cola[i].classList.remove("soldout");
+        }
+        if(buyList.has(colaInfo[i].name)){
+            let index = [...buyList].indexOf(colaInfo[i].name);
             buyColaList.children[index].innerHTML = createLi(colaInfo[i], "buy").innerHTML;
         }
         else{
             buyColaList.appendChild(createLi(colaInfo[i], "buy"));
-            buyList.push(colaInfo[i].name);
+            buyList.add(colaInfo[i].name);
         }
+        console.log(buyList);
     });
 }
 
-// 구매 리스트의 콜라 버튼 클릭 시 리스트에서 콜라 환불
-for(let i in buyColaList.childElementCount){
-    buyColaList.children[i].lastElementChild.addEventListener("click", () => {
-        colaInfo[i].refundCola();
-        buyColaList.children[index].innerHTML = createLi(colaInfo[i]).innerHTML;
-        if(colaInfo[i].stock !== 0){
-            buyColaList.children[i].lastElementChild.classList.remove("soldout");
-        }
-    })
-}
+// 구매 리스트의 콜라 버튼 클릭 시 구매 리스트에서 1개씩 제거
 
 returnButton.addEventListener("click", returnMoney);
 depositButton.addEventListener("click", depositMoney);
@@ -138,7 +134,19 @@ function createLi(obj, state) {
         colaCount.innerText = obj.own;
     }
     button.append(colaImg, colaName, colaCount);
+
     li.appendChild(button);
+    li.addEventListener("click", (e) => {
+        if(e.target.tagName === "BUTTON" || e.target.parentNode.tagName === "BUTTON") {
+            obj.refundCola();
+            li.innerHTML = createLi(obj, state).innerHTML;
+            if(obj.getBuy() === 0){
+                li.innerHTML = "";
+                buyList.delete(obj.name);
+            }
+        }
+        console.log(buyList);
+    });
     return li;
 }
 
@@ -165,8 +173,8 @@ function buyCola(){
         total.innerHTML = parseInt(total.innerHTML.replace(",", "")) + 1000*totalCount;
         setMoneyFormat();
         for(let cola of buyList){
-            if(!ownList.includes(cola)){
-                ownList.push(cola);
+            if(!ownList.has(cola)){
+                ownList.add(cola);
             }
         }
         for(let i in colaInfo){
@@ -174,14 +182,13 @@ function buyCola(){
         }
         ownColaList.innerHTML = "";
         for(let cola of ownList){
-            // 콜라 obj가 인수로 들어가야 하는데 지금 cola는 이름만 가지고 있음...
             let colaObj = colaInfo.filter(obj => obj.name === cola)[0];
             console.log(colaObj);
             ownColaList.appendChild(createLi(colaObj, "own"));
             console.log(createLi(colaObj, "own"));
             colaObj.clearBuy();
         }
-        buyList = [];
+        buyList.clear();
         buyColaList.innerHTML = "";
         document.querySelectorAll(".cola").forEach(cola => {
             cola.classList.remove("clicked");
@@ -212,5 +219,15 @@ function depositMoney(){
         // 입력 input값 초기화
         deposit.value = "";
         setMoneyFormat();
+    }
+}
+
+// 클릭 시 클릭된 상태를 표시하는 clicked 클래스를 버튼에 추가
+function drawOutline(state, obj){
+    if(state){
+        obj.classList.add("clicked");
+    }
+    else{
+        obj.classList.remove("clicked");
     }
 }

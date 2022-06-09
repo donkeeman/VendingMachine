@@ -12,35 +12,35 @@
     <header class="header">
         <h1 class="title">Vending Machine</h1>
     </header>
-        <div class="mainWrapper">
-            <!-- 왼쪽 섹션 -->
-            <section class="machineSection">
-                <ul class="colaList" id="colaList">
+    <main class="mainWrapper">
+        <!-- 왼쪽 섹션 -->
+        <section class="machineSection">
+            <ul class="colaList" id="colaList">
+            </ul>
+            <div class="buyWrapper">
+                <p class="balanceMoney" id="balance">0</p>
+                <button type="button" class="returnButton" id="returnButton">거스름돈 반환</button>
+                <input type="number" placeholder="입금액 입력" class="depositInput" id="deposit" min="0">
+                <button type="button" class="depositButton" id="depositButton">입금</button>
+                <ul class="buyColaList" id="buyColaList">
                 </ul>
-                <div class="buyWrapper">
-                    <p class="balanceMoney" id="balance">0</p>
-                    <button type="button" class="returnButton" id="returnButton">거스름돈 반환</button>
-                    <input type="number" placeholder="입금액 입력" class="depositInput" id="deposit" min="0">
-                    <button type="button" class="depositButton" id="depositButton">입금</button>
-                    <ul class="buyColaList" id="buyColaList">
-                    </ul>
-                    <button type="button" class="buyButton" id="buyButton">획득</button>
-                </div>
-            </section>
+                <button type="button" class="buyButton" id="buyButton">획득</button>
+            </div>
+        </section>
 
-            <section class="mySection">
-                <!-- 오른쪽 위 섹션 -->
-                <div class="myMoneyWrapper">
-                    <p class="myMoney" id="myMoney">25000</p>
-                </div>
-                <!-- 오른쪽 아래 섹션 -->
-                <div class="myColaWrapper">
-                    <h2 class="myColaHeader">획득한 음료</h2>
-                    <ul class="ownColaList" id="ownColaList">
-                    </ul>
-                    <p class="totalMoney" id="total">0</p>
-                </div>
-            </section>
-        </div>
+        <section class="mySection">
+            <!-- 오른쪽 위 섹션 -->
+            <div class="myMoneyWrapper">
+                <p class="myMoney" id="myMoney">25000</p>
+            </div>
+            <!-- 오른쪽 아래 섹션 -->
+            <div class="myColaWrapper">
+                <h2 class="myColaHeader">획득한 음료</h2>
+                <ul class="ownColaList" id="ownColaList">
+                </ul>
+                <p class="totalMoney" id="total">0</p>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
