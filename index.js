@@ -277,15 +277,24 @@ function depositMoney(){
 
 // 소지금 부분을 클릭하면 소지금에 값을 추가 또는 차감
 function depositMyMoney(){
-    const money = parseInt(prompt("추가/차감할 금액을 입력해주세요. (음수로 입력하면 차감됩니다.)"));
-    // 취소 눌렀거나, 입력값이 비어 있거나, 숫자가 아니면 무시
+    // Number.MAX_SAFE_INTEGER가 깔끔하게 떨어지는 수가 아니라서 천조의 자리만 가져온 수를 max로 정함
+    let max = 9000000000000000;
+    let money = parseInt(prompt(`추가/차감할 금액을 입력해주세요. (음수로 입력하면 차감됩니다.)\n(최소 소지금: 0원, 최대 소지금: ${max.toLocaleString("en-US")}원입니다.)`));
+    // parseInt한 결과값이 숫자가 아니면 0으로 처리
     if(isNaN(money)){
         money = 0;
     }
     // 소지금에 입력한 만큼의 금액을 추가 또는 차감
-    myMoneyValue += money;
-    if(myMoneyValue < 0){
-        myMoneyValue = 0;
+    else{
+        myMoneyValue += money;
+        // 최대 금액보다 크다면 최대 금액으로 고정
+        if(myMoneyValue > max){
+            myMoneyValue = max;
+        }
+        // 최소 금액(0원)보다 작다면 최소 금액으로 고정
+        else if(myMoneyValue < 0){
+            myMoneyValue = 0;
+        }
     }
     setMoneyFormat();
 }
