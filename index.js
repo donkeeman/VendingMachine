@@ -3,10 +3,10 @@ let colaList = document.querySelector("#colaList"); // 좌측 상단의 콜라 �
 let buyColaList = document.querySelector("#buyColaList"); // 좌측 하단의 구매한 콜라 목록 (ul)
 let ownColaList = document.querySelector("#ownColaList"); // 우측의 획득한 콜라 목록 (ul)
 
-let balance = document.querySelector("#balance"); // 잔액
-let deposit = document.querySelector("#deposit"); // 입금액
-let myMoney = document.querySelector("#myMoney"); // 소지금
-let total = document.querySelector("#total"); // 총금액
+let balance = document.querySelector("#balance"); // 잔액 영역
+let deposit = document.querySelector("#deposit"); // 입금액 영역
+let myMoney = document.querySelector("#myMoney"); // 소지금 영역
+let total = document.querySelector("#total"); // 총금액 영역
 
 const returnButton = document.querySelector("#returnButton"); // 거스름돈 반환 버튼
 const depositButton = document.querySelector("#depositButton"); // 입금 버튼
@@ -56,12 +56,14 @@ class Cola{
     }
 }
 
-// 콜라 클래스 저장하는 배열
-let colaClassArr = [];
-// 콜라 버튼을 눌렀을 때 콜라를 추가할 리스트(집합)
-let buyList = new Set();
-// 획득 버튼을 눌렀을 때 최종 구매한 콜라의 리스트(집합)
-let ownList = new Set();
+let colaClassArr = []; // 콜라 클래스 저장하는 배열
+let buyList = new Set(); // 콜라 버튼을 눌렀을 때 콜라를 추가할 리스트(집합)
+let ownList = new Set(); // 획득 버튼을 눌렀을 때 최종 구매한 콜라의 리스트(집합)
+
+let balanceValue = 0; // 실제 잔액
+let depositValue = 0; // 실제 입금액
+let myMoneyValue = 25000; // 실제 소지금
+let totalValue = 0; // 실제 총금액
 
 // 페이지가 로드되었을 때 바로 실행할 함수
 // 금액 초기화 및 포맷 설정
@@ -86,19 +88,6 @@ async function getColaInfo() {
     for(let cola of colaClassArr){
         colaList.appendChild(createCola(cola));
     }
-
-    let cola = document.querySelectorAll(".cola");
-    for(let i in colaClassArr){
-        // 콜라 버튼 클릭 시 콜라 구매
-        cola[i].addEventListener("click", (e) => {
-            colaClassArr[i].buyCola();
-            // buyList는 set이므로 중복체크 필요 없이 그냥 add
-            // 나중에 콜라 클래스의 id로 찾을 수 있도록 인덱스를 넣음
-            buyList.add(i);
-            updateList("buy");
-            colaClassCheck();
-        });
-    }
 }
 
 // .cola(좌측 상단의 콜라 li들)를 반환하는 함수
@@ -117,6 +106,15 @@ function createCola(colaObj) {
     colaPrice.innerText = `${colaObj.price}원`;
     colaButton.append(colaImg, colaName, colaPrice);
     li.appendChild(colaButton);
+    // 콜라를 클릭하면 콜라 구매
+    li.addEventListener("click", () => {
+        colaObj.buyCola();
+        // buyList는 set이므로 중복체크 필요 없이 그냥 add
+        // 나중에 콜라 클래스의 id로 찾을 수 있도록 인덱스를 넣음
+        buyList.add(colaObj.id.toString());
+        updateList("buy");
+        colaClassCheck();
+    });
     return li;
 }
 
@@ -201,25 +199,25 @@ function colaClassCheck(){
 // 돈 관련 변수에 세 자리마다 ','가 추가된 포맷을 지정해주는 함수
 // 돈이 변경될 때마다 붙어 있던 ,를 없애고 숫자로 바꾼 후 다시 ,를 추가하는 형식
 function setMoneyFormat(){
-    balance.innerHTML = parseInt(balance.innerHTML.replace(",", "")).toLocaleString("en-US");
-    myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", "")).toLocaleString("en-US");
-    total.innerHTML = parseInt(total.innerHTML.replace(",", "")).toLocaleString("en-US");
+    balance.innerHTML = balanceValue.toLocaleString("en-US");
+    myMoney.innerHTML = myMoneyValue.toLocaleString("en-US");
+    total.innerHTML = totalValue.toLocaleString("en-US");
 }
 
 // 획득 버튼을 누르면 구매 리스트에 있는 콜라가 획득 리스트로 이동하는 함수
 function buyCola(){
     // 선택한 콜라의 총 개수 최종 확정
     let totalCount = colaClassArr.map(cola => cola.getBuy()).reduce((total, num) => total+num, 0);
-    console.log(`total: ${totalCount}`);
+
     // 잔액 부족하면
-    if(1000*totalCount>parseInt(balance.innerHTML.replace(",", "")))
+    if(1000*totalCount > balanceValue)
         alert("잔액이 부족합니다. 입금 후 다시 시도해주세요.");
     // 잔액 안 부족하면
     else{
         // 잔액 = 원래 잔액 - 음료수 구매액
-        balance.innerHTML = parseInt(balance.innerHTML.replace(",", "")) - 1000*totalCount;
+        balanceValue -= 1000*totalCount;
         // 총금액 = 원래 총금액 + 음료수 구매액
-        total.innerHTML = parseInt(total.innerHTML.replace(",", "")) + 1000*totalCount;
+        totalValue += 1000*totalCount;
         setMoneyFormat();
         // buyList의 원소들을 ownList로 옮겨옴
         for(let cola of buyList){
@@ -242,33 +240,35 @@ function buyCola(){
 // 반환 버튼을 누르면 잔액을 소지금으로 이동
 function returnMoney(){
     // 소지금 = 원래 소지금 + 잔액
-    myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", ""))+parseInt(balance.innerHTML.replace(",", ""));
+    myMoneyValue += balanceValue;
     // 잔액은 0으로 초기화
-    balance.innerHTML = 0;
+    balanceValue = 0;
     setMoneyFormat();
 }
 
 // 입금 버튼을 누르면 입금 input에 입력된 값을 잔액으로 이동
 function depositMoney(){
+    // 입력값이 string으로 들어오기 때문에 parseInt를 이용하여 변환
+    depositValue = parseInt(deposit.value);
     // 입금액 입력 란이 비어있는 경우, 0원으로 처리
-    if(deposit.value === ""){
-        deposit.value = 0;
+    if(isNaN(depositValue)){
+        depositValue = 0;
     }
     // 입금액 입력값이 음수일 경우
-    if(deposit.value < 0){
+    if(depositValue < 0){
         alert("입금액은 0원 이상이어야 합니다. 다시 입력해 주세요.");
         deposit.value = "";
-        return;
+        depositValue = 0;
     }
     // 소지금이 입력 input의 value보다 적을 경우
-    if(parseInt(myMoney.innerHTML.replace(",", "")) < parseInt(deposit.value))
+    if(myMoneyValue < depositValue)
         alert("소지금이 부족합니다. 다시 입력해 주세요.");
     // 소지금이 입력 input의 value보다 큰 경우
     else{
         // 잔액 = 원래 잔액 + 입력 금액
-        balance.innerHTML = parseInt(balance.innerHTML.replace(",", "")) + parseInt(deposit.value);
+        balanceValue += depositValue;
         // 소지금 = 원래 소지금 - 입력 금액
-        myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", "")) - parseInt(deposit.value);
+        myMoneyValue -= depositValue;
         // 입금액 입력 input값 초기화
         deposit.value = "";
         setMoneyFormat();
@@ -277,12 +277,15 @@ function depositMoney(){
 
 // 소지금 부분을 클릭하면 소지금에 값을 추가 또는 차감
 function depositMyMoney(){
-    const money = prompt("추가/차감할 금액을 입력해주세요. (음수로 입력하면 차감됩니다.)");
+    const money = parseInt(prompt("추가/차감할 금액을 입력해주세요. (음수로 입력하면 차감됩니다.)"));
     // 취소 눌렀거나, 입력값이 비어 있거나, 숫자가 아니면 무시
-    if(money === null || money === "" || isNaN(money)){
-        return;
+    if(isNaN(money)){
+        money = 0;
     }
     // 소지금에 입력한 만큼의 금액을 추가 또는 차감
-    myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", "")) + parseInt(money);
+    myMoneyValue += money;
+    if(myMoneyValue < 0){
+        myMoneyValue = 0;
+    }
     setMoneyFormat();
 }
