@@ -234,14 +234,14 @@ body{
     pointer-events: none;
 }
 
-.buyColaImage{
+.liColaImage{
     float: left;
     width: 18px;
     height: 33px;
     vertical-align: bottom;
 }
 
-.buyColaName{
+.liColaName{
     margin-left: 8px;
     font-weight: 500;
     font-size: 10px;
@@ -250,7 +250,7 @@ body{
     vertical-align: bottom;
 }
 
-.buyColaCount{
+.liColaCount{
     float: right;
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
