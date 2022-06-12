@@ -72,6 +72,7 @@ getColaInfo();
 returnButton.addEventListener("click", returnMoney); // 거스름돈 반환 버튼 이벤트
 depositButton.addEventListener("click", depositMoney); // 입금 버튼 이벤트
 buyButton.addEventListener("click", buyCola); // 획득 버튼 이벤트
+myMoney.addEventListener("click", depositMyMoney); // 소지금 이벤트
 
 // 콜라 json 데이터를 fetch로 받아온 후, table에 그려주는 함수
 async function getColaInfo() {
@@ -253,6 +254,12 @@ function depositMoney(){
     if(deposit.value === ""){
         deposit.value = 0;
     }
+    // 입금액 입력값이 음수일 경우
+    if(deposit.value < 0){
+        alert("입금액은 0원 이상이어야 합니다. 다시 입력해 주세요.");
+        deposit.value = "";
+        return;
+    }
     // 소지금이 입력 input의 value보다 적을 경우
     if(parseInt(myMoney.innerHTML.replace(",", "")) < parseInt(deposit.value))
         alert("소지금이 부족합니다. 다시 입력해 주세요.");
@@ -266,4 +273,16 @@ function depositMoney(){
         deposit.value = "";
         setMoneyFormat();
     }
+}
+
+// 소지금 부분을 클릭하면 소지금에 값을 추가 또는 차감
+function depositMyMoney(){
+    const money = prompt("추가/차감할 금액을 입력해주세요. (음수로 입력하면 차감됩니다.)");
+    // 취소 눌렀거나, 입력값이 비어 있거나, 숫자가 아니면 무시
+    if(money === null || money === "" || isNaN(money)){
+        return;
+    }
+    // 소지금에 입력한 만큼의 금액을 추가 또는 차감
+    myMoney.innerHTML = parseInt(myMoney.innerHTML.replace(",", "")) + parseInt(money);
+    setMoneyFormat();
 }
