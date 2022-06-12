@@ -42,13 +42,17 @@ class Cola{
     }
     // 콜라 구매 시 구매 수량은 1 증가, 재고 수량은 1 감소
     buyCola(){
-        this.buy++;
-        this.stock--;
+        if(this.stock !== 0){
+            this.buy++;
+            this.stock--;
+        }
     }
     // 콜라 환불 시 구매 수량은 1 감소, 재고 수량은 1 증가
     refundCola(){
-        this.buy--;
-        this.stock++;
+        if(this.buy !== 0){
+            this.buy--;
+            this.stock++;
+        }
     }
     // 콜라 구매 개수 0으로 초기화
     clearBuy(){
@@ -73,6 +77,12 @@ getColaInfo();
 
 returnButton.addEventListener("click", returnMoney); // 거스름돈 반환 버튼 이벤트
 depositButton.addEventListener("click", depositMoney); // 입금 버튼 이벤트
+// 입금액이 입력되었을 때 엔터 눌러도 입금되도록
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Enter" && deposit.value !== ""){
+        depositMoney();
+    }
+});
 buyButton.addEventListener("click", buyCola); // 획득 버튼 이벤트
 myMoney.addEventListener("click", depositMyMoney); // 소지금 이벤트
 
