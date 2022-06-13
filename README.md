@@ -23,20 +23,20 @@ Chrome, Edge, Safari, Firefox 등의 타 브라우저 사용을 권장합니다.
 ---
 ### 콜라 선택
 
-<img src="./preview/add_cola.gif" alt="webmainpreview" width="500" height="350"/>
+<img src="./preview/add_cola.gif" alt="add_cola" width="500" height="350"/>
 
 좌측 상단의 콜라 버튼을 누르면 좌측 하단의 리스트에 1개씩 추가됩니다.
 
 ### 콜라 선택 취소
 
-<img src="./preview/delete_cola.gif" alt="webmainpreview" width="500" height="350"/>
+<img src="./preview/delete_cola.gif" alt="delete_cola" width="500" height="350"/>
 
 좌측 하단의 리스트에서 콜라를 누르면 1개씩 차감되고, 0개가 되면 리스트에서 제거됩니다.
 
 ### 입금
 
-<img src="./preview/deposit.gif" alt="webmainpreview" width="500" height="350"/>
-<img src="./preview/deposit_alert.png" alt="webmainpreview" width="300" height="100"/>
+<img src="./preview/deposit.gif" alt="deposit" width="500" height="350"/>
+<img src="./preview/deposit_alert.png" alt="deposit_alert" width="300" height="100"/>
 
 입금액 입력 란에 원하는 만큼의 금액을 입력하면 잔액에 추가되고 소지금이 차감됩니다.  
 입력한 금액이 소지금보다 많은 경우에는 alert 창이 출력됩니다.
@@ -50,7 +50,7 @@ Chrome, Edge, Safari, Firefox 등의 타 브라우저 사용을 권장합니다.
 
 ### 거스름돈 반환
 
-<img src="./preview/change.gif" alt="buy" width="500" height="350"/>
+<img src="./preview/change.gif" alt="change" width="500" height="350"/>
 
 거스름돈 반환 버튼을 누르면 잔액 란의 금액을 소지금에 추가합니다.
 
@@ -62,8 +62,8 @@ Chrome, Edge, Safari, Firefox 등의 타 브라우저 사용을 권장합니다.
 
 ### 소지금 입금
 
-<img src="./preview/deposit_mymoney.gif" alt="webmainpreview" width="500" height="350"/>
-<img src="./preview/deposit_mymoney_alert.png" alt="webmainpreview" width="300" height="150"/>
+<img src="./preview/deposit_mymoney.gif" alt="deposit+mymoney" width="500" height="350"/>
+<img src="./preview/deposit_mymoney_alert.png" alt="deposit_mymoney_alert" width="300" height="150"/>
 
 소지금 영역을 클릭하면 alert 창이 출력됩니다.  
 입력한 금액만큼 소지금이 추가 또는 차감됩니다.
