@@ -38,10 +38,12 @@ Chrome, Edge, Safari, Firefox 등의 타 브라우저 사용을 권장합니다.
 
 ### 콜라 구매
 
-<img src="./preview/buy.gif" alt="buy" width="500" height="350"/>
+<img src="./preview/buy.gif" alt="buy" width="500" height="350"/> <img src="./preview/buy_alert.png" alt="buy_alert" width="300" height="100"/>
 
 획득 버튼을 누르면 좌측 하단의 리스트에 있는 콜라들이 획득한 음료 리스트로 옮겨집니다.  
 콜라의 가격만큼의 금액이 잔액에서 차감되고, 우측 하단의 총금액이 증가합니다.
+
+잔액이 콜라의 가격보다 적은 경우에는 alert 창이 출력됩니다.
 
 ### 거스름돈 반환
 
