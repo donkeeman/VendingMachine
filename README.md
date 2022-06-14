@@ -61,7 +61,7 @@ Chrome, Edge, Safari, Firefox 등의 타 브라우저 사용을 권장합니다.
 
 <img src="./preview/deposit_mymoney.gif" alt="deposit+mymoney" width="500" height="350"/> <img src="./preview/deposit_mymoney_alert.png" alt="deposit_mymoney_alert" width="300" height="150"/>
 
-소지금 영역을 클릭하면 alert 창이 출력됩니다.  
+소지금 영역을 클릭하면 prompt 창이 출력됩니다.  
 입력한 금액만큼 소지금이 추가 또는 차감됩니다.
 
 ## 후기
