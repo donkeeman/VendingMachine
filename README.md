@@ -9,7 +9,7 @@
 ## 지원되는 브라우저
 >**경고:** Internet Explorer에서는 제대로 동작하지 않습니다.  
 
-Chrome, Edge, Safari, Firefox 등 최신 버전의 타 브라우저 사용을 권장합니다.
+Chrome, Edge, Safari, Firefox,  등 최신 버전의 타 브라우저 사용을 권장합니다.
 
 ## 개발 스택
 - HTML
